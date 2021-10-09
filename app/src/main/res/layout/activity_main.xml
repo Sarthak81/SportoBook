@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back2"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/texthead"
+        android:layout_width="399dp"
+        android:layout_height="118dp"
+        android:fontFamily="@font/atomic_age"
+        android:text="Welcome to Book-a-Court"
+        android:textAlignment="center"
+        android:textColor="#AD1457"
+        android:textSize="38sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.185" />
+
+    <Button
+        android:id="@+id/Register"
+        android:layout_width="216dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="64dp"
+        android:fontFamily="@font/belgrano"
+        android:text="Register"
+        android:textSize="18sp"
+        app:backgroundTint="#AD1457"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.382" />
+
+    <Button
+        android:id="@+id/Login"
+        android:layout_width="215dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/belgrano"
+        android:text="Login"
+        android:textSize="18sp"
+        app:backgroundTint="#AD1457"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Register" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
