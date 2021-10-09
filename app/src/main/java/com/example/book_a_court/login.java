@@ -3,6 +3,7 @@ package com.example.book_a_court;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -20,8 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class login extends AppCompatActivity {
     EditText mEmail,mPassword;
-    Button mLoginBtn;
-    TextView forgotTextLink;
+    CardView mLoginBtn;
+    Button forgotTextLink;
     FirebaseAuth fAuth;
 
     @Override
@@ -30,7 +31,7 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         mEmail = findViewById(R.id.loginMail);
         mPassword = findViewById(R.id.loginPass);
-        mLoginBtn = findViewById(R.id.Login);
+        mLoginBtn = findViewById(R.id.cardView);
         forgotTextLink = findViewById(R.id.button);
         fAuth = FirebaseAuth.getInstance();
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
