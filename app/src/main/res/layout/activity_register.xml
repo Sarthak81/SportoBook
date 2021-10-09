@@ -6,14 +6,165 @@
     android:layout_height="match_parent"
     tools:context=".register">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearper"
+        android:layout_width="345dp"
         android:layout_height="wrap_content"
-        android:text="register page"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="350dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/linearLayout2">
+
+        <EditText
+            android:id="@+id/perName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/name"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/perEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/email_id"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/perPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/mobile_no"
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/perPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearcom"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout2"
+        app:layout_constraintVertical_bias="0.068">
+
+        <EditText
+            android:id="@+id/comName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/sports_complex_name"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/comPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/phone_no"
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/comEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/email_id"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/comAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/address"
+            android:inputType="textPostalAddress" />
+
+        <EditText
+            android:id="@+id/comPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/reghead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/headland_one"
+        android:text="@string/register"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <Button
+        android:id="@+id/regbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="276dp"
+        android:fontFamily="@font/belgrano"
+        android:text="@string/register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearper"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/regbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reghead"
+        app:layout_constraintVertical_bias="0.037">
+
+        <Button
+            android:id="@+id/complex"
+            android:layout_width="123dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="29dp"
+            android:fadingEdge="vertical"
+            android:fontFamily="@font/belgrano"
+            android:text="@string/complex" />
+
+        <Button
+            android:id="@+id/person"
+            android:layout_width="123dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="29dp"
+            android:fadingEdge="vertical"
+            android:fontFamily="@font/belgrano"
+            android:text="@string/person" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
