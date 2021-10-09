@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "260412634680",
+    "project_id": "book-a-court",
+    "storage_bucket": "book-a-court.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260412634680:android:c455fa08d7697ec80d58cd",
+        "android_client_info": {
+          "package_name": "com.example.book_a_court"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "260412634680-sc6b8bmll7or29th3ehc6s0mv9kstltg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXL3SNgyXz9H9a1u_m3CEyYEeNq1W4sU0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "260412634680-sc6b8bmll7or29th3ehc6s0mv9kstltg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
