@@ -5,7 +5,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -22,9 +24,9 @@ import com.google.firebase.auth.FirebaseAuth;
 public class login extends AppCompatActivity {
     EditText mEmail,mPassword;
     CardView mLoginBtn;
-    Button forgotTextLink;
+    Button forgotTextLink,complex,person;
     FirebaseAuth fAuth;
-
+    int activeUser=0;     // 0 - complex owner    and   1-person
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +34,29 @@ public class login extends AppCompatActivity {
         mEmail = findViewById(R.id.loginMail);
         mPassword = findViewById(R.id.loginPass);
         mLoginBtn = findViewById(R.id.cardView);
+        complex = findViewById(R.id.complex);
+        person = findViewById(R.id.person);
         forgotTextLink = findViewById(R.id.button);
         fAuth = FirebaseAuth.getInstance();
+
+        person.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onClick(View v) {
+                activeUser = 1;
+                person.setBackgroundColor(android.R.color.transparent);
+                complex.setBackgroundColor(Color.parseColor("#3700B3"));
+            }
+        });
+        complex.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onClick(View v) {
+                activeUser = 0;
+                complex.setBackgroundColor(android.R.color.transparent);
+                person.setBackgroundColor(Color.parseColor("#3700B3"));
+            }
+        });
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,6 +77,13 @@ public class login extends AppCompatActivity {
                 if(password.length() < 6){
                     mPassword.setError("Password Must be >= 6 Characters");
                     return;
+                }
+
+                if(activeUser == 0){            // for complex owner authentication
+
+                }
+                else if(activeUser == 1){       // for person authentication
+
                 }
             }
         });
