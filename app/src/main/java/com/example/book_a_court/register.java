@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 
 public class register extends AppCompatActivity {
     LinearLayout linearPer,linearCom;
-    Button Complex,Person,Register;
+    Button Complex,Person,regComBtn,regPerBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,21 +18,27 @@ public class register extends AppCompatActivity {
         Person = findViewById(R.id.person);
         linearCom = findViewById(R.id.linearcom);
         linearPer = findViewById(R.id.linearper);
-        Register = findViewById(R.id.Register);
+        regComBtn = findViewById(R.id.regcombtn);
+        regPerBtn = findViewById(R.id.regperbtn);
         linearPer.setAlpha(0);
+        regPerBtn.setAlpha(0);
 
         Complex.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                regPerBtn.setAlpha(0);
                 linearPer.setAlpha(0);
                 linearCom.setAlpha(1);
+                regComBtn.setAlpha(1);
             }
         });
         Person.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                regComBtn.setAlpha(0);
                 linearCom.setAlpha(0);
                 linearPer.setAlpha(1);
+                regPerBtn.setAlpha(1);
             }
         });
     }
