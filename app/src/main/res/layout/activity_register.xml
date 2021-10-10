@@ -73,7 +73,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/sports_complex_name"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textColorHint="#8C5858" />
 
         <EditText
             android:id="@+id/comPhone"

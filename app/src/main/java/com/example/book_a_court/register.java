@@ -182,6 +182,8 @@ public class register extends AppCompatActivity {
                             user.put("email",email);
                             user.put("phone",phone);
                             user.put("address",address);
+                            user.put("IsAdmin","1");
+
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
@@ -252,6 +254,7 @@ public class register extends AppCompatActivity {
                                 }
                             });
 
+
                             Toast.makeText(register.this, "User Created.", Toast.LENGTH_SHORT).show();
                             userID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
                             DocumentReference documentReference = fStore.collection("users").document(userID);
@@ -259,6 +262,7 @@ public class register extends AppCompatActivity {
                             user.put("fName",fullName);
                             user.put("email",email);
                             user.put("phone",phone);
+                            user.put("IsUser","1");
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override

@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         login = findViewById(R.id.Login);
         reg = findViewById(R.id.Register);
+
     }
 
     public void login(View view){
