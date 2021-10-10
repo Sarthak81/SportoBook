@@ -26,6 +26,7 @@ public class login extends AppCompatActivity {
     CardView mLoginBtn;
     Button forgotTextLink,complex,person;
     FirebaseAuth fAuth;
+    ProgressBar progressBar;
     int activeUser=0;     // 0 - complex owner    and   1-person
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class login extends AppCompatActivity {
         person = findViewById(R.id.person);
         forgotTextLink = findViewById(R.id.button);
         fAuth = FirebaseAuth.getInstance();
+        progressBar = findViewById(R.id.progressBar2);
 
         person.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("ResourceAsColor")
@@ -78,12 +80,12 @@ public class login extends AppCompatActivity {
                     mPassword.setError("Password Must be >= 6 Characters");
                     return;
                 }
-
+                progressBar.setVisibility(View.VISIBLE);
                 if(activeUser == 0){            // for complex owner authentication
-
+                    Toast.makeText(login.this, "Complex Logged in", Toast.LENGTH_SHORT).show();
                 }
                 else if(activeUser == 1){       // for person authentication
-
+                    Toast.makeText(login.this, "Person logged in", Toast.LENGTH_SHORT).show();
                 }
             }
         });

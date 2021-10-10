@@ -45,6 +45,7 @@ public class register extends AppCompatActivity {
     Button Complex,Person,regComBtn,regPerBtn;
     public static final String TAG = "TAG";
     EditText mFullName,mEmail,mPassword,mPhone;
+    EditText comName,comAddress,comEmail,comPass,comPhone;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
     FirebaseFirestore fStore;
@@ -63,6 +64,12 @@ public class register extends AppCompatActivity {
         linearPer = findViewById(R.id.linearper);
         regComBtn = findViewById(R.id.regcombtn);
         regPerBtn = findViewById(R.id.regperbtn);
+
+        comName = findViewById(R.id.comName);
+        comAddress = findViewById(R.id.comAddress);
+        comEmail = findViewById(R.id.comEmail);
+        comPass = findViewById(R.id.comPassword);
+        comPhone = findViewById(R.id.comPhone);
 
         mFullName   = findViewById(R.id.perName);
         mEmail      = findViewById(R.id.perEmail);
@@ -107,6 +114,96 @@ public class register extends AppCompatActivity {
             finish();
         }
 
+        regComBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String email = comEmail.getText().toString().trim();
+                final  String password = comPass.getText().toString().trim();
+                final String fullName = comName.getText().toString();
+                final String phone    = comPhone.getText().toString();
+                final String address = comAddress.getText().toString();
+
+                if(TextUtils.isEmpty(email)){
+                    mEmail.setError("Email is Required.");
+                    return;
+                }
+                if(TextUtils.isEmpty(phone)){
+                    mEmail.setError("Phone no. is Required.");
+                    return;
+                }
+                if(TextUtils.isEmpty(fullName)){
+                    mEmail.setError("Complex Name is Required.");
+                    return;
+                }
+                if(TextUtils.isEmpty(address)){
+                    mEmail.setError("Address is Required.");
+                    return;
+                }
+
+                if(TextUtils.isEmpty(password)){
+                    mPassword.setError("Password is Required.");
+                    return;
+                }
+
+                if(password.length() < 6){
+                    mPassword.setError("Password Must be >= 6 Characters");
+                    return;
+                }
+
+                progressBar.setVisibility(View.VISIBLE);
+
+                // register the user in firebase
+
+                fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+
+                            // send verification link
+
+                            FirebaseUser fuser = fAuth.getCurrentUser();
+                            fuser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(register.this, "Verification Email Has been Sent.", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG, "onFailure: Email not sent " + e.getMessage());
+                                }
+                            });
+
+                            Toast.makeText(register.this, "User Created.", Toast.LENGTH_SHORT).show();
+                            userID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
+                            DocumentReference documentReference = fStore.collection("complexes").document(userID);
+                            Map<String,Object> user = new HashMap<>();
+                            user.put("fName",fullName);
+                            user.put("email",email);
+                            user.put("phone",phone);
+                            user.put("address",address);
+
+                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG, "onSuccess: user Profile is created for "+ userID);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG, "onFailure: " + e.toString());
+                                }
+                            });
+                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
+                        }else {
+                            Toast.makeText(register.this, "Error ! " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
+                        }
+                    }
+                });
+            }
+        });
 
         regPerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
