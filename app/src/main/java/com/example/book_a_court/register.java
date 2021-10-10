@@ -2,6 +2,8 @@ package com.example.book_a_court;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -50,6 +52,7 @@ public class register extends AppCompatActivity {
 
 
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,30 +68,37 @@ public class register extends AppCompatActivity {
         mEmail      = findViewById(R.id.perEmail);
         mPassword   = findViewById(R.id.perPass);
         mPhone      = findViewById(R.id.perPhone);
-        //mLoginBtn   =
-        linearPer.setAlpha(0);
-        regPerBtn.setAlpha(0);
 
+        linearPer.setVisibility(View.INVISIBLE);
+        regPerBtn.setVisibility(View.INVISIBLE);
+        Complex.setBackgroundColor(android.R.color.transparent);
+        Person.setBackgroundColor(Color.parseColor("#3700B3"));
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
-        //progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar);
 
         Complex.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
-                regPerBtn.setAlpha(0);
-                linearPer.setAlpha(0);
-                linearCom.setAlpha(1);
-                regComBtn.setAlpha(1);
+                Complex.setBackgroundColor(android.R.color.transparent);
+                Person.setBackgroundColor(Color.parseColor("#3700B3"));
+                regPerBtn.setVisibility(View.INVISIBLE);
+                linearPer.setVisibility(View.INVISIBLE);
+                linearCom.setVisibility(View.VISIBLE);
+                regComBtn.setVisibility(View.VISIBLE);
             }
         });
         Person.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
-                regComBtn.setAlpha(0);
-                linearCom.setAlpha(0);
-                linearPer.setAlpha(1);
-                regPerBtn.setAlpha(1);
+                Person.setBackgroundColor(android.R.color.transparent);
+                Complex.setBackgroundColor(Color.parseColor("#3700B3"));
+                regComBtn.setVisibility(View.INVISIBLE);
+                linearCom.setVisibility(View.INVISIBLE);
+                linearPer.setVisibility(View.VISIBLE);
+                regPerBtn.setVisibility(View.VISIBLE);
             }
         });
 

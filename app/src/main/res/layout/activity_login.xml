@@ -127,7 +127,7 @@
         android:layout_centerInParent="true"
         android:background="#0022858E"
         android:fontFamily="@font/headland_one"
-        android:text="@string/book_a_court"
+        android:text="@string/login"
         android:textAlignment="center"
         android:textColor="#101010"
         android:textSize="34sp"
