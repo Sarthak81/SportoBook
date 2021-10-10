@@ -109,19 +109,16 @@ public class register extends AppCompatActivity {
             }
         });
 
-        if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-            finish();
-        }
+
 
         regComBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String email = comEmail.getText().toString().trim();
-                final  String password = comPass.getText().toString().trim();
-                final String fullName = comName.getText().toString();
-                final String phone    = comPhone.getText().toString();
-                final String address = comAddress.getText().toString();
+                String email = comEmail.getText().toString().trim();
+                String password = comPass.getText().toString().trim();
+                String fullName = comName.getText().toString();
+                String phone    = comPhone.getText().toString();
+                String address = comAddress.getText().toString();
 
                 if(TextUtils.isEmpty(email)){
                     mEmail.setError("Email is Required.");
@@ -176,7 +173,7 @@ public class register extends AppCompatActivity {
 
                             Toast.makeText(register.this, "User Created.", Toast.LENGTH_SHORT).show();
                             userID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
-                            DocumentReference documentReference = fStore.collection("complexes").document(userID);
+                            DocumentReference documentReference = fStore.collection("users").document(userID);
                             Map<String,Object> user = new HashMap<>();
                             user.put("fName",fullName);
                             user.put("email",email);
@@ -196,7 +193,7 @@ public class register extends AppCompatActivity {
                                     Log.d(TAG, "onFailure: " + e.toString());
                                 }
                             });
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+//                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
                         }else {
                             Toast.makeText(register.this, "Error ! " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
@@ -204,6 +201,10 @@ public class register extends AppCompatActivity {
                         }
                     }
                 });
+                if(fAuth.getCurrentUser() != null){
+                    startActivity(new Intent(getApplicationContext(),login.class));
+                    finish();
+                }
             }
         });
 
@@ -275,7 +276,7 @@ public class register extends AppCompatActivity {
                                     Log.d(TAG, "onFailure: " + e.toString());
                                 }
                             });
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+//                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
                         }else {
                             Toast.makeText(register.this, "Error ! " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
@@ -283,6 +284,10 @@ public class register extends AppCompatActivity {
                         }
                     }
                 });
+                if(fAuth.getCurrentUser() != null){
+                    startActivity(new Intent(getApplicationContext(),login.class));
+                    finish();
+                }
             }
         });
 

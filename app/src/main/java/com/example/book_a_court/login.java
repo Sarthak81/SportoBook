@@ -100,8 +100,8 @@ public class login extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
+                                Toast.makeText(login.this, "Complex Logged in Successfully", Toast.LENGTH_SHORT).show();
                                 checkAccessLevel(Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getUser()).getUid());
-                             //   Toast.makeText(login.this, "Person Logged in Successfully", Toast.LENGTH_SHORT).show();
 
                                 //startActivity(new Intent(getApplicationContext(),MainActivity.class));
                             }else {
@@ -118,7 +118,7 @@ public class login extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                              //  Toast.makeText(login.this, "Person Logged in Successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(login.this, "Person Logged in Successfully", Toast.LENGTH_SHORT).show();
                                 checkAccessLevel(Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getUser()).getUid());
                                 //startActivity(new Intent(getApplicationContext(),MainActivity.class));
                             }else {
@@ -184,15 +184,15 @@ public class login extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
 
                 Log.d("TAG", "OnSuccess:" + documentSnapshot.getData());
-if(activeUser==0) {
-    if (documentSnapshot.getString("IsAdmin") != null) {
-        startActivity(new Intent(getApplicationContext(), login.class));
-        finish();
-    }
-    else
-        Toast.makeText(login.this, "Not Authenticated User", Toast.LENGTH_SHORT).show();
+                if(activeUser==0) {
+                    if (documentSnapshot.getString("IsAdmin") != null) {
+                        startActivity(new Intent(getApplicationContext(), login.class));
+                        finish();
+                    }
+                    else
+                        Toast.makeText(login.this, "Not Authenticated User", Toast.LENGTH_SHORT).show();
 
-}if(activeUser==1) {
+                }if(activeUser==1) {
                     if (documentSnapshot.getString("IsUser") != null) {
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         finish();
