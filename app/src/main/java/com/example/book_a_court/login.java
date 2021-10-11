@@ -110,6 +110,7 @@ public class login extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 signIn();
             }
         });
@@ -142,7 +143,7 @@ public class login extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task< AuthResult > task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(login.this, "Complex Logged in Successfully", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(login.this, "Complex Logged in Successfully", Toast.LENGTH_SHORT).show();
                                 checkAccessLevel(Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getUser()).getUid());
 
                                 //startActivity(new Intent(getApplicationContext(),MainActivity.class));
@@ -234,16 +235,19 @@ public class login extends AppCompatActivity {
                     }
                     else
                         Toast.makeText(login.this, "Not Authenticated User", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
 
                 }if(activeUser==1) {
                     if (documentSnapshot.getString("IsUser") != null) {
                         //Toast.makeText(getApplicationContext(), "id exists", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), navPer.class));
 
                         finish();
+                        progressBar.setVisibility(View.GONE);
                     }
                     else
                         Toast.makeText(login.this, "Not Authenticated User", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
 
                 }
 
@@ -255,6 +259,7 @@ public class login extends AppCompatActivity {
 
 
     private void createRequest(){
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -266,6 +271,7 @@ public class login extends AppCompatActivity {
     }
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        progressBar.setVisibility(View.GONE);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
     @Override
@@ -343,7 +349,7 @@ public class login extends AppCompatActivity {
                                        }
                                    });
 
-                                   Intent intent =new Intent(getApplicationContext(),Profile.class);
+                                   Intent intent =new Intent(getApplicationContext(),navPer.class);
                                    startActivity(intent);}
 
                                else {

@@ -159,6 +159,7 @@ public class register extends AppCompatActivity {
                             // send verification link
 
                             FirebaseUser fuser = fAuth.getCurrentUser();
+                            assert fuser != null;
                             fuser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
@@ -193,7 +194,8 @@ public class register extends AppCompatActivity {
                                     Log.d(TAG, "onFailure: " + e.toString());
                                 }
                             });
-//                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            progressBar.setVisibility(View.GONE);
+                          startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
                         }else {
                             Toast.makeText(register.this, "Error ! " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
@@ -243,6 +245,7 @@ public class register extends AppCompatActivity {
                             // send verification link
 
                             FirebaseUser fuser = fAuth.getCurrentUser();
+                            assert fuser != null;
                             fuser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
