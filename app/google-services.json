@@ -7,12 +7,57 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:260412634680:android:a6df46d18307bb330d58cd",
+        "android_client_info": {
+          "package_name": "com.avishkaar.freefokat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "260412634680-3dor6jm6q6267i8l497njr9m0h4rv5r4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.avishkaar.freefokat",
+            "certificate_hash": "cb4ccbf0e1ff4389dd4d5340b89018ee420025f9"
+          }
+        },
+        {
+          "client_id": "260412634680-sc6b8bmll7or29th3ehc6s0mv9kstltg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXL3SNgyXz9H9a1u_m3CEyYEeNq1W4sU0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "260412634680-sc6b8bmll7or29th3ehc6s0mv9kstltg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:260412634680:android:c455fa08d7697ec80d58cd",
         "android_client_info": {
           "package_name": "com.example.book_a_court"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "260412634680-j9fvbmgr9qqg8erhhvtiuk37qt99eclh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.book_a_court",
+            "certificate_hash": "cb4ccbf0e1ff4389dd4d5340b89018ee420025f9"
+          }
+        },
         {
           "client_id": "260412634680-sc6b8bmll7or29th3ehc6s0mv9kstltg.apps.googleusercontent.com",
           "client_type": 3
