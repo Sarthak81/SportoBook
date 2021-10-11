@@ -1,16 +1,15 @@
-package com.example.book_a_court.ui.slideshow;
+package com.example.book_a_court.ui.chat;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SlideshowViewModel extends ViewModel {
-
+public class ChatViewModel extends ViewModel {
     private MutableLiveData< String > mText;
 
-    public SlideshowViewModel() {
+    public ChatViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        mText.setValue("This is chat fragment");
     }
 
     public LiveData< String > getText() {

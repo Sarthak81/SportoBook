@@ -82,27 +82,25 @@ public class login extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar2);
 
         person.setOnClickListener(new View.OnClickListener()
-
-    {
-        @SuppressLint("ResourceAsColor")
-        @Override
-        public void onClick (View v){
-        activeUser = 1;
-        person.setBackgroundColor(android.R.color.transparent);
-        complex.setBackgroundColor(Color.parseColor("#3700B3"));
-    }
-    });
+        {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onClick (View v){
+            activeUser = 1;
+            person.setBackgroundColor(android.R.color.transparent);
+            complex.setBackgroundColor(Color.parseColor("#3700B3"));
+        }
+        });
         complex.setOnClickListener(new View.OnClickListener()
-
-    {
-        @SuppressLint("ResourceAsColor")
-        @Override
-        public void onClick (View v){
-        activeUser = 0;
-        complex.setBackgroundColor(android.R.color.transparent);
-        person.setBackgroundColor(Color.parseColor("#3700B3"));
-    }
-    });
+        {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onClick (View v){
+            activeUser = 0;
+            complex.setBackgroundColor(android.R.color.transparent);
+            person.setBackgroundColor(Color.parseColor("#3700B3"));
+        }
+        });
 
 
         createRequest();

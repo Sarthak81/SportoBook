@@ -12,14 +12,19 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.book_a_court.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_profile"
+        android:name="com.example.book_a_court.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.book_a_court.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_userHistory"
+        android:name="com.example.book_a_court.ui.history.HistoryFragment"
+        android:label="UserHistory"
+        tools:layout="@layout/fragment_userhistory" />
+    <fragment
+        android:id="@+id/nav_chat"
+        android:name="com.example.book_a_court.ui.chat.ChatFragment"
+        android:label="ChatBox"
+        tools:layout="@layout/fragment_chat" />
 </navigation>

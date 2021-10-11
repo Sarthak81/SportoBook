@@ -28,4 +28,8 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_activity_nav_com">navCom</string>
     <string name="title_activity_nav_complex">navComplex</string>
+    <string name="user_history">User History</string>
+    <string name="profile">Profile</string>
+    <string name="chatbox">ChatBox</string>
+    <string name="sign_out">Sign Out</string>
 </resources>
