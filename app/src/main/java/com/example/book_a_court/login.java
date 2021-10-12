@@ -60,7 +60,7 @@ public class login extends AppCompatActivity {
         super.onStart();
         FirebaseUser user =fAuth.getCurrentUser();
         if(user!=null){
-            Intent intent =new Intent(getApplicationContext(),Profile.class);
+            Intent intent =new Intent(getApplicationContext(),navCom.class);
             startActivity(intent);
         }
     }
@@ -228,7 +228,7 @@ public class login extends AppCompatActivity {
                 Log.d("TAG", "OnSuccess:" + documentSnapshot.getData());
                 if(activeUser==0) {
                     if (documentSnapshot.getString("IsAdmin") != null) {
-                        startActivity(new Intent(getApplicationContext(), Profile.class));
+                        startActivity(new Intent(getApplicationContext(), navCom.class));
                         finish();
                     }
                     else
@@ -368,7 +368,7 @@ public class login extends AppCompatActivity {
                                        }
                                    });
 
-                                   Intent intent =new Intent(getApplicationContext(),Profile.class);
+                                   Intent intent =new Intent(getApplicationContext(),navCom.class);
                                    startActivity(intent);
 
                                }

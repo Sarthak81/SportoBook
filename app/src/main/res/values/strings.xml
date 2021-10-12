@@ -32,4 +32,8 @@
     <string name="profile">Profile</string>
     <string name="chatbox">ChatBox</string>
     <string name="sign_out">Sign Out</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="gallery">Gallery</string>
+    <string name="manage_sports">Manage Sports</string>
 </resources>
