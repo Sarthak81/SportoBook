@@ -60,7 +60,7 @@ public class login extends AppCompatActivity {
         super.onStart();
         FirebaseUser user =fAuth.getCurrentUser();
         if(user!=null){
-            Intent intent =new Intent(getApplicationContext(),Profile.class);
+            Intent intent =new Intent(getApplicationContext(),navPer.class);
             startActivity(intent);
         }
     }
