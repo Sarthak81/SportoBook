@@ -238,7 +238,7 @@ public class login extends AppCompatActivity {
                 }if(activeUser==1) {
                     if (documentSnapshot.getString("IsUser") != null) {
                         //Toast.makeText(getApplicationContext(), "id exists", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(getApplicationContext(), navPer.class));
+                        startActivity(new Intent(getApplicationContext(), Profile.class));
 
                         finish();
                         progressBar.setVisibility(View.GONE);
