@@ -66,13 +66,13 @@ public class ChatFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    Log.d("newTag", "onDataChange: new datasnapshot");
+//                    Log.d("newTag", "onDataChange: new datasnapshot");
                     for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-                        Log.d("newTag" , "onDataChange: new datasnapshot1");
+//                        Log.d("newTag" , "onDataChange: new datasnapshot1");
                         for(DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                             Messages messages = dataSnapshot2.getValue(Messages.class);
-                            Log.d("newTag", "onDataChange: " + messages.getSenderId());
-                            Log.d("newTag", "onSuccess: "+ (dups.contains(messages.getReceiverId())));
+//                            Log.d("newTag", "onDataChange: " + messages.getSenderId());
+//                            Log.d("newTag", "onSuccess: "+ (dups.contains(messages.getReceiverId())));
                             if((messages.getSenderId().equals(auth.getUid())) && !dups.contains(messages.getReceiverId())) {
                                 DocumentReference df = fStore.collection("users").document(messages.getReceiverId());
                                 dups.add(messages.getReceiverId());
@@ -81,12 +81,13 @@ public class ChatFragment extends Fragment {
                                     public void onSuccess(DocumentSnapshot document) {
                                         Users user = new Users(document.getId(), document.getString("fName"),
                                                 document.getString("email"), document.getString("phone"));
-                                        Log.d("newTag", document.getId() + " => " + document.getId() + document.getString("fName") + document.getString("email") + document.getString("phone"));
+//                                        Log.d("newTag", document.getId() + " => " + document.getId() + document.getString("fName") + document.getString("email") + document.getString("phone"));
                                         userNames.add(user);
                                         chatUserAdapter.notifyDataSetChanged();
                                     }
                                 });
                             }
+
                             if(messages.getReceiverId().equals(auth.getUid()) && !dupr.contains(messages.getReceiverId())){
                                 DocumentReference df = fStore.collection("users").document(messages.getSenderId());
                                 dupr.add(messages.getReceiverId());
@@ -95,12 +96,13 @@ public class ChatFragment extends Fragment {
                                     public void onSuccess(DocumentSnapshot document) {
                                         Users user = new Users(document.getId(), document.getString("fName"),
                                                 document.getString("email"), document.getString("phone"));
-                                        Log.d("newTag", document.getId() + " => " + document.getId() + document.getString("fName") + document.getString("email") + document.getString("phone"));
+//                                        Log.d("newTag", document.getId() + " => " + document.getId() + document.getString("fName") + document.getString("email") + document.getString("phone"));
                                         userNames.add(user);
                                         chatUserAdapter.notifyDataSetChanged();
                                     }
                                 });
                             }
+
                             break;
                         }
                         break;
