@@ -181,6 +181,7 @@ public class register extends AppCompatActivity {
                             user.put("phone",phone);
                             user.put("address",address);
                             user.put("IsAdmin","1");
+                            user.put("url","");
 
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -213,10 +214,10 @@ public class register extends AppCompatActivity {
         regPerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String email = mEmail.getText().toString().trim();
-                final  String password = mPassword.getText().toString().trim();
-                final String fullName = mFullName.getText().toString();
-                final String phone    = mPhone.getText().toString();
+                 String email = mEmail.getText().toString().trim();
+                  String password = mPassword.getText().toString().trim();
+                 String fullName = mFullName.getText().toString();
+                 String phone    = mPhone.getText().toString();
 
                 if(TextUtils.isEmpty(email)){
                     mEmail.setError("Email is Required.");
@@ -267,6 +268,7 @@ public class register extends AppCompatActivity {
                             user.put("email",email);
                             user.put("phone",phone);
                             user.put("IsUser","1");
+                            //user.put("url","");
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
