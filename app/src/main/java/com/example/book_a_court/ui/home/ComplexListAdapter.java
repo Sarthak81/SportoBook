@@ -39,7 +39,7 @@ public class ComplexListAdapter extends RecyclerView.Adapter<ComplexListAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Users user = complexList.get(position);
 //        Log.d("chatTag", "onBindViewHolder: "+user.getName());
-        holder.user_name.setText(user.getName());
+        //holder.user_name.setText(user.getName());
 
     }
 

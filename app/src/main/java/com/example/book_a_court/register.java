@@ -181,7 +181,7 @@ public class register extends AppCompatActivity {
                             user.put("phone",phone);
                             user.put("address",address);
                             user.put("IsAdmin","1");
-                            user.put("url","");
+                           // user.put("url","");
 
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {

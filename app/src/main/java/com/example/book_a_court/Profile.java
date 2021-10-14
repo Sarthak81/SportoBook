@@ -66,7 +66,7 @@ public class Profile extends AppCompatActivity {
     String currentUserId;
     //FirebaseAuth fAuth=FirebaseAuth.getInstance();
     public static final String TAG = "TAG";
-    TextView textName,textEmail,textPhone,editName,editEmail,editPhone,doneName;
+    TextView textName,textEmail,textPhone,editName,editEmail,editPhone,doneName,donePhone;
     EditText editPerName,editPerEmail,editPerPhone;
 
 
@@ -79,10 +79,13 @@ public class Profile extends AppCompatActivity {
         image = findViewById(R.id.pp);
         save = findViewById(R.id.ppedit);
         textName = findViewById(R.id.textName);
-        editEmail = findViewById(R.id.editEmail);
+        textEmail = findViewById(R.id.textEmail);
+textPhone=findViewById(R.id.textPhone);
+        //editEmail = findViewById(R.id.editEmail);
         editPhone = findViewById(R.id.editPhone);
         editName = findViewById(R.id.editName);
         doneName = findViewById(R.id.doneNAME);
+        donePhone =findViewById(R.id.donePhone);
 
         editPerName = findViewById(R.id.editPerName);
         editPerEmail = findViewById(R.id.editPerEmail);
@@ -92,6 +95,7 @@ public class Profile extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
+
         currentUserId = user.getUid();
         documentReference = db.collection("users").document(currentUserId);
         //getImageUri=db.collection("users").document()
@@ -149,17 +153,29 @@ public class Profile extends AppCompatActivity {
 //                textName.setVisibility(View.VISIBLE);
             }
         });
-//        editPhone.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                textPhone.setVisibility(View.GONE);
-//                editPhone.setVisibility(View.VISIBLE);
-//                phone_edit_kardo_bro();
-//                editPhone.setVisibility(View.GONE);
-//                textPhone.setVisibility(View.VISIBLE);
-//
-//            }
-//        });
+
+        editPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textPhone.setVisibility(View.GONE);
+                editPhone.setVisibility(View.GONE);
+                editPerPhone.setVisibility(View.VISIBLE);
+                donePhone.setVisibility(View.VISIBLE);
+//                editPerName.setVisibility(View.GONE);
+//                textName.setVisibility(View.VISIBLE);
+            }
+        });
+        donePhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                phone_edit_kardo_bro();
+                textPhone.setVisibility(View.VISIBLE);
+                editPhone.setVisibility(View.VISIBLE);
+                editPerPhone.setVisibility(View.GONE);
+                donePhone.setVisibility(View.GONE);
+
+            }
+        });
 
 
 
@@ -187,46 +203,25 @@ public class Profile extends AppCompatActivity {
 
     }
 
-    private void mail_edit_kardo_bro() {
-        String email_edited = editEmail.getText().toString().trim();
-        Map<String,Object> edMail = new HashMap<>();
-        edMail.put("fName",email_edited);
-        documentReference.update(edMail).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(Profile.this, "Email Successfully Changed", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Profile.this, "Email Change Failed", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }
-    private void name_edit_kardo_bro() {
-        String name_edited = editPerName.getText().toString().trim();
-        Map<String,Object> edMail = new HashMap<>();
-        edMail.put("fname",name_edited);
-        documentReference.update(edMail).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                textName.setText(name_edited);
-                Toast.makeText(Profile.this, "Name Successfully Changed", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Profile.this, "Name Change Failed", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }
-    private void phone_edit_kardo_bro() {
-        String p_e = editPhone.getText().toString().trim();
+//    private void mail_edit_kardo_bro() {
+//        String email_edited = editEmail.getText().toString().trim();
+//        Map<String,Object> edMail = new HashMap<>();
+//        edMail.put("fname",email_edited);
+//        documentReference.update(edMail).addOnSuccessListener(new OnSuccessListener<Void>() {
+//            @Override
+//            public void onSuccess(Void aVoid) {
+//                Toast.makeText(Profile.this, "Email Successfully Changed", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Toast.makeText(Profile.this, "Email Change Failed", Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
+//    }
 
 
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -235,6 +230,7 @@ public class Profile extends AppCompatActivity {
         try {
             if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE ) {
                 CropImage.ActivityResult result = CropImage.getActivityResult(data);
+                assert result != null;
                 imageUri = result.getUri();
                 Picasso.get().load(imageUri).into(image);
             }
@@ -290,7 +286,7 @@ public class Profile extends AppCompatActivity {
                 public void onComplete(@NonNull Task< Uri > task) {
                     if (task.isSuccessful()) {
                         Uri downloadUri = task.getResult();
-                        Toast.makeText(Profile.this, "" + downloadUri.toString(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Profile.this, "" + downloadUri.toString(), Toast.LENGTH_SHORT).show();
                         Map< String, Object > profile = new HashMap<>();
                         profile.put("url", downloadUri.toString());
                        // profile.put("fname", p_e);
@@ -329,7 +325,7 @@ public class Profile extends AppCompatActivity {
         }
 
         else {
-            Toast.makeText(this, "image is not selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Image  not selected", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -337,20 +333,18 @@ public class Profile extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        String em = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();
-
         documentReference.addSnapshotListener(new EventListener< DocumentSnapshot >() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirebaseFirestoreException error) {
 
 
                 assert snapshot != null;
-                //textPhone.setText(Objects.requireNonNull(snapshot.get("email")).toString());
+                textPhone.setText(Objects.requireNonNull(snapshot.get("phone")).toString());
                 textName.setText(snapshot.getString("fname"));
                 //if(textEmail.setText("")!=null;)
-              //  textEmail.setText(val);
+                textEmail.setText(snapshot.getString("email"));
 
-                Toast.makeText(Profile.this, ""+snapshot.get("email"), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Profile.this, ""+snapshot.get("email"), Toast.LENGTH_SHORT).show();
                 //
                 Glide.with(getApplicationContext()).load((Objects.requireNonNull(snapshot.get("url"))).toString()).into(image);
 
@@ -369,5 +363,60 @@ public class Profile extends AppCompatActivity {
         });
 
 
+    }
+    private void phone_edit_kardo_bro() {
+        String phone_edited = editPerPhone.getText().toString().trim();
+        if(phone_edited.length() > 0){
+        Map< String, Object > edPhone = new HashMap<>();
+        edPhone.put("phone", phone_edited);
+        documentReference.update(edPhone).addOnSuccessListener(new OnSuccessListener< Void >() {
+            @Override
+            public void onSuccess(Void aVoid) {
+
+                textPhone.setText(phone_edited);
+                Toast.makeText(Profile.this, "Phone no Successfully Changed", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Profile.this, " Phone no Change Failed", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+
+    }
+        else{
+            Toast.makeText(Profile.this, "Please enter valid phone number", Toast.LENGTH_SHORT).show();
+            textPhone.setText(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getPhoneNumber());
+
+        }
+    }
+    private void name_edit_kardo_bro() {
+        String name_edited = editPerName.getText().toString().trim();
+        if (name_edited.length() > 0){
+            Map< String, Object > edMail = new HashMap<>();
+
+        edMail.put("fname", name_edited);
+        documentReference.update(edMail).addOnSuccessListener(new OnSuccessListener< Void >() {
+            @Override
+            public void onSuccess(Void aVoid) {
+
+                    textName.setText(name_edited);
+                    Toast.makeText(Profile.this, "Name Successfully Changed", Toast.LENGTH_SHORT).show();
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Profile.this, "Name Change Failed", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+        else{
+            Toast.makeText(Profile.this, "Please Enter Valid Name", Toast.LENGTH_SHORT).show();
+            textName.setText(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getDisplayName());
+        }
     }
 }
