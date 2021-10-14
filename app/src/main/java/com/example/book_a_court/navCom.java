@@ -39,7 +39,7 @@ public class navCom extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfigurationCom = new AppBarConfiguration.Builder(
-                R.id.nav_homeCom, R.id.nav_profileCom, R.id.nav_gallery,R.id.nav_manage)
+                R.id.nav_homeCom, R.id.nav_profileCom, R.id.nav_gallery,R.id.nav_manage,R.id.nav_chatComplex)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_complex);

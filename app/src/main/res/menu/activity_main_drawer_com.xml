@@ -20,5 +20,9 @@
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_baseline_museum_24"
             android:title="@string/manage_sports" />
+        <item
+            android:id="@+id/nav_chatComplex"
+            android:icon="@drawable/ic_baseline_chat_24"
+            android:title="@string/chatbox" />
     </group>
 </menu>
