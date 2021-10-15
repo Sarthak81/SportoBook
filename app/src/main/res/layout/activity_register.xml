@@ -74,8 +74,7 @@
             android:ems="10"
             android:hint="@string/sports_complex_name"
             android:inputType="textPersonName"
-            android:textColor="@color/black"
-            android:textColorHint="#8C5858" />
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/comPhone"

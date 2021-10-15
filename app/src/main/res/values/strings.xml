@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Book-a-Court</string>
+    <string name="app_name">SportoBook</string>
     <string name="register">Register</string>
-    <string name="welcome_to_book_a_court">Welcome to Book-a-Court</string>
+    <string name="welcome_to_book_a_court">Welcome to SportoBook</string>
     <string name="email_id">Email id</string>
     <string name="complex">Complex</string>
     <string name="person">Person</string>
