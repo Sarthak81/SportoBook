@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#AEB8A2"
-    tools:context=".Profile">
+    tools:context=".ui.profile.ProfileFragment">
 
     <TextView
         android:id="@+id/doneNAME"
@@ -41,7 +41,10 @@
         android:id="@+id/textPhone"
         android:layout_width="262dp"
         android:layout_height="43dp"
+        android:gravity="center_vertical"
         android:text="Phone"
+        android:padding="@dimen/_5sdp"
+        android:drawablePadding="@dimen/_5sdp"
         android:textColor="#000000"
         android:textSize="18sp"
         app:drawableLeftCompat="@android:drawable/ic_menu_call"
@@ -72,6 +75,9 @@
         android:layout_height="43dp"
         android:drawableLeft="@android:drawable/ic_dialog_email"
         android:text="Email"
+        android:gravity="center_vertical"
+        android:padding="@dimen/_5sdp"
+        android:drawablePadding="@dimen/_5sdp"
         android:textAlignment="textStart"
         android:textColor="#050505"
         android:textSize="18sp"
@@ -116,6 +122,7 @@
         android:layout_height="44dp"
         android:text="logout"
         android:textColor="#3F51B5"
+        android:textSize="12sp"
         app:backgroundTint="#2196F3"
         app:iconTint="#1C1212"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -125,18 +132,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/pp"
         android:layout_width="162dp"
         android:layout_height="162dp"
-        android:background="#5E4949"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.18"
-        app:srcCompat="@drawable/chatprofile" />
+        android:src="@drawable/chatprofile" />
 
     <Button
         android:id="@+id/ppedit"
@@ -184,6 +190,9 @@
         android:layout_height="43dp"
         android:drawableLeft="@android:drawable/ic_menu_edit"
         android:text="Name"
+        android:gravity="center_vertical"
+        android:padding="@dimen/_5sdp"
+        android:drawablePadding="@dimen/_5sdp"
         android:textColor="#040404"
         android:textSize="18sp"
         app:drawableTint="#F44336"
@@ -212,6 +221,7 @@
         android:layout_width="262dp"
         android:layout_height="43dp"
         android:ems="10"
+        android:gravity="center_vertical"
         android:hint="Enter Name"
         android:inputType="textPersonName"
         android:textColor="#100E0E"
@@ -225,21 +235,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.54" />
 
-    <EditText
-        android:id="@+id/editPerEmail"
-        android:layout_width="262dp"
-        android:layout_height="43dp"
-        android:ems="10"
-        android:hint="Enter Email"
-        android:inputType="textPersonName"
-        android:textColorHint="#251E1E"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.638" />
 
     <ImageView
         android:id="@+id/userProfBack"

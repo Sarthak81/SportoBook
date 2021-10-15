@@ -80,7 +80,7 @@ public class Profile extends AppCompatActivity {
         save = findViewById(R.id.ppedit);
         textName = findViewById(R.id.textName);
         textEmail = findViewById(R.id.textEmail);
-textPhone=findViewById(R.id.textPhone);
+        textPhone=findViewById(R.id.textPhone);
         //editEmail = findViewById(R.id.editEmail);
         editPhone = findViewById(R.id.editPhone);
         editName = findViewById(R.id.editName);
@@ -88,9 +88,9 @@ textPhone=findViewById(R.id.textPhone);
         donePhone =findViewById(R.id.donePhone);
 
         editPerName = findViewById(R.id.editPerName);
-        editPerEmail = findViewById(R.id.editPerEmail);
+//        editPerEmail = findViewById(R.id.editPerEmail);
         editPerPhone = findViewById(R.id.editPerPhone);
-    bbtn=findViewById(R.id.userProfBack);
+        bbtn=findViewById(R.id.userProfBack);
         //textEmail.setText("hello");
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -337,21 +337,15 @@ textPhone=findViewById(R.id.textPhone);
             @Override
             public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirebaseFirestoreException error) {
 
-
                 assert snapshot != null;
                 textPhone.setText(Objects.requireNonNull(snapshot.get("phone")).toString());
-                textName.setText(snapshot.getString("fname"));
+                textName.setText(snapshot.getString("fName"));
                 //if(textEmail.setText("")!=null;)
                 textEmail.setText(snapshot.getString("email"));
 
 //                Toast.makeText(Profile.this, ""+snapshot.get("url"), Toast.LENGTH_SHORT).show();
-                //
-//                try {
-//                    Glide.with(getApplicationContext()).load((Objects.requireNonNull(snapshot.get("url"))).toString()).into(image);
-//                }
-//                catch (Exception e){
-//                    Toast.makeText(Profile.this, "No image", Toast.LENGTH_SHORT).show();
-//                }
+                if(snapshot.get("url")!=null)
+                    Glide.with(getApplicationContext()).load((Objects.requireNonNull(snapshot.get("url"))).toString()).into(image);
 
            }
 

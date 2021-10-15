@@ -1,6 +1,7 @@
 package com.example.book_a_court;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -60,8 +61,24 @@ public class login extends AppCompatActivity {
         super.onStart();
         FirebaseUser user =fAuth.getCurrentUser();
         if(user!=null){
-            Intent intent =new Intent(getApplicationContext(),navPer.class);
-            startActivity(intent);
+            DocumentReference df = fStore.collection("users").document(fAuth.getUid());
+            final ProgressDialog pd = new ProgressDialog(this);
+            pd.setTitle("Logging in Please wait");
+            pd.show();
+            df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if(documentSnapshot.getString("IsAdmin")!=null) {
+                        Intent intent = new Intent(getApplicationContext(), navCom.class);
+                        pd.dismiss();
+                        startActivity(intent);
+                    }
+                    else{
+                        Intent intent = new Intent(getApplicationContext(), navPer.class);
+                        startActivity(intent);
+                    }
+                }
+            });
         }
     }
 
