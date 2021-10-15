@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/home_bg"
     android:focusableInTouchMode="true"
-    android:foreground="@drawable/home_bg"
     tools:context=".ui.home.HomeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -23,11 +22,12 @@
         android:id="@+id/Search"
         android:layout_width="332dp"
         android:layout_height="49dp"
-        android:background="@color/cardview_dark_background"
+        android:background="@color/white"
         android:drawableLeft="@android:drawable/ic_menu_search"
         android:ems="10"
+        android:hint="Search courts"
         android:inputType="textPersonName"
-        android:text="Search Courts"
+        android:textColorHint="#0B0A0A"
         app:layout_constraintBottom_toTopOf="@+id/complexList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
@@ -41,13 +41,12 @@
         android:layout_height="107dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/berkshire_swash"
-        android:text="TextView"
+        android:text="House of Courts"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.146"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="House of Courts" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

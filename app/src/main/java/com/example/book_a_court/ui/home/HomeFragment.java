@@ -69,7 +69,7 @@ public class HomeFragment extends Fragment {
                                         complexes.add(user);
 //                                      Log.d("user", "onComplete: "+user.getName());
                                     }
-                                    complexListAdapter.notifyDataSetChanged();
+//                                    complexListAdapter.notifyDataSetChanged();
                             }
 
                         } else {

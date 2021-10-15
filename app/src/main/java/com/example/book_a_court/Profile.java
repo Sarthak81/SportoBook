@@ -344,10 +344,14 @@ textPhone=findViewById(R.id.textPhone);
                 //if(textEmail.setText("")!=null;)
                 textEmail.setText(snapshot.getString("email"));
 
-                //Toast.makeText(Profile.this, ""+snapshot.get("email"), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(Profile.this, ""+snapshot.get("url"), Toast.LENGTH_SHORT).show();
                 //
-                Glide.with(getApplicationContext()).load((Objects.requireNonNull(snapshot.get("url"))).toString()).into(image);
-
+//                try {
+//                    Glide.with(getApplicationContext()).load((Objects.requireNonNull(snapshot.get("url"))).toString()).into(image);
+//                }
+//                catch (Exception e){
+//                    Toast.makeText(Profile.this, "No image", Toast.LENGTH_SHORT).show();
+//                }
 
            }
 

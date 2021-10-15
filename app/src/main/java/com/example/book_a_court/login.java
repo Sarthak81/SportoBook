@@ -60,7 +60,7 @@ public class login extends AppCompatActivity {
         super.onStart();
         FirebaseUser user =fAuth.getCurrentUser();
         if(user!=null){
-            Intent intent =new Intent(getApplicationContext(),Profile.class);
+            Intent intent =new Intent(getApplicationContext(),navPer.class);
             startActivity(intent);
         }
     }
@@ -238,7 +238,7 @@ public class login extends AppCompatActivity {
                 }if(activeUser==1) {
                     if (documentSnapshot.getString("IsUser") != null) {
                         //Toast.makeText(getApplicationContext(), "id exists", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(getApplicationContext(), Profile.class));
+                        startActivity(new Intent(getApplicationContext(), navPer.class));
 
                         finish();
                         progressBar.setVisibility(View.GONE);
