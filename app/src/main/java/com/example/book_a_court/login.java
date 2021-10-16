@@ -70,7 +70,7 @@ public class login extends AppCompatActivity {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     if(documentSnapshot.getString("IsAdmin")!=null) {
-                        Intent intent = new Intent(getApplicationContext(), addSport.class);
+                        Intent intent = new Intent(getApplicationContext(), navCom.class);
                         pd.dismiss();
                         startActivity(intent);
                     }

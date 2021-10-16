@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.book_a_court.Profile;
 import com.example.book_a_court.R;
+import com.example.book_a_court.navCom;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,7 +54,7 @@ public class addSport extends AppCompatActivity {
         back_addSport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(getApplicationContext(),ManageFragment.class);
+                Intent intent =new Intent(getApplicationContext(), navCom.class);
                 startActivity(intent);
             }
         });
@@ -84,21 +85,21 @@ public class addSport extends AppCompatActivity {
 
                 Map< String, Object > court_details = new HashMap<>();
                     court_details.put("court_name",name);
-                    court_details.put("court_price",price);
-                    court_details.put("court_number",number);
+                    court_details.put("court_price",court_price);
+                    court_details.put("court_number",court_no);
 
 
                     documentReference.set(court_details).addOnSuccessListener(new OnSuccessListener< Void >() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Toast.makeText(addSport.this, "Court Successfully Created", Toast.LENGTH_SHORT).show();
+                            Intent intent =new Intent(getApplicationContext(), navCom.class);
+                            startActivity(intent);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(addSport.this, "Couldn't Create New Court", Toast.LENGTH_SHORT).show();
-
-
                         }
                     });
                 }
