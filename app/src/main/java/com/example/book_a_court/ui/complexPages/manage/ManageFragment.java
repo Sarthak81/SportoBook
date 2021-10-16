@@ -1,5 +1,6 @@
 package com.example.book_a_court.ui.complexPages.manage;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.book_a_court.R;
+import com.example.book_a_court.ui.complexPages.GalleryFragment;
 
 import java.util.ArrayList;
 
@@ -36,6 +38,13 @@ public class ManageFragment extends Fragment {
         manageRecycler = root.findViewById(R.id.manageRecycler);
 
         //addnew button fn below
+        addNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getContext(),addSport.class );
+                startActivity(intent);
+            }
+        });
 
 
 
