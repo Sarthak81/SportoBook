@@ -43,7 +43,7 @@ public class ManageFragment extends Fragment {
         sportArrayList = new ArrayList<>();
         addNew = root.findViewById(R.id.addNew);
         manageRecycler = root.findViewById(R.id.manageRecycler);
- String sport_name;
+ String sport_name = "";
 
 
         //addnew button fn below
@@ -56,7 +56,7 @@ public class ManageFragment extends Fragment {
         });
 
 
-
+get_data(sport_name,sportArrayList);
 
 
 
