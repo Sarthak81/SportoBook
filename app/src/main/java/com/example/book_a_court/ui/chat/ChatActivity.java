@@ -24,15 +24,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Date;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ChatActivity extends AppCompatActivity {
-    String ReceiverName,ReceiverUid,SenderUid;
+    String ReceiverName,ReceiverUid,ReceiverUri,SenderUid;
     static String senderRoom,receiverRoom;
     TextView receiverName;
     CardView sendMessage,sendBtn;
+    CircleImageView chatPageImage;
     EditText edtMsg;
     FirebaseFirestore fStore;
     FirebaseAuth auth;
@@ -48,6 +52,13 @@ public class ChatActivity extends AppCompatActivity {
 
         ReceiverName = getIntent().getStringExtra("name");
         ReceiverUid = getIntent().getStringExtra("uid");
+
+        ReceiverUri = getIntent().getStringExtra("ReceiverImage");
+        chatPageImage = findViewById(R.id.chatpage_image);
+        if(ReceiverUri!=null) {
+            Picasso.get().load(ReceiverUri).into(chatPageImage);
+//            Toast.makeText(this, "ReceiverUid" + ReceiverUri, Toast.LENGTH_SHORT).show();
+        }
 
         receiverName = findViewById(R.id.chatpage_name);
         receiverName.setText(ReceiverName);

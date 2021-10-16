@@ -4,9 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.book_a_court.R;
@@ -39,7 +41,7 @@ public class ComplexListAdapter extends RecyclerView.Adapter<ComplexListAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Users user = complexList.get(position);
 //        Log.d("chatTag", "onBindViewHolder: "+user.getName());
-//        holder.user_name.setText(user.getName());
+        holder.complex_name.setText(user.getName());
 
     }
 
@@ -49,12 +51,14 @@ public class ComplexListAdapter extends RecyclerView.Adapter<ComplexListAdapter.
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-//        CircleImageView circleImageView;
-//        TextView user_name;
+        CardView tile;
+        RatingBar ratingBar;
+        TextView complex_name;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-//            circleImageView = itemView.findViewById(R.id.chatpage_image);
-//            user_name = itemView.findViewById(R.id.chat_name);
+            ratingBar = itemView.findViewById(R.id.ratingBar);
+            tile = itemView.findViewById(R.id.complexTile);
+            complex_name = itemView.findViewById(R.id.complex_name);
         }
     }
 }

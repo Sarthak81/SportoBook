@@ -65,11 +65,11 @@ public class HomeFragment extends Fragment {
                                     if(document.getString("IsAdmin") != null) {
                                         Log.d("Mytag", document.getId() + " => " + document.getId() + document.getString("fName") + document.getString("email") + document.getString("phone"));
                                         Users user = new Users(document.getId(), document.getString("fName"),
-                                                document.getString("email"), document.getString("phone"));
+                                                document.getString("email"), document.getString("phone"),document.getString("url"));
                                         complexes.add(user);
 //                                      Log.d("user", "onComplete: "+user.getName());
                                     }
-//                                    complexListAdapter.notifyDataSetChanged();
+                                    complexListAdapter.notifyDataSetChanged();
                             }
 
                         } else {
@@ -78,10 +78,10 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
-//        complexList = root.findViewById(R.id.complexList);
-//        complexList.setLayoutManager(new LinearLayoutManager(getContext()));
-//        complexListAdapter = new ComplexListAdapter(getContext(),complexes);
-//        complexList.setAdapter(complexListAdapter);
+        complexList = root.findViewById(R.id.complexList);
+        complexList.setLayoutManager(new LinearLayoutManager(getContext()));
+        complexListAdapter = new ComplexListAdapter(getContext(),complexes);
+        complexList.setAdapter(complexListAdapter);
 
         return root;
     }

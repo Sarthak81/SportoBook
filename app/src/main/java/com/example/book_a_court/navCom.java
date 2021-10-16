@@ -3,6 +3,8 @@ package com.example.book_a_court;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,13 +14,26 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class navCom extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfigurationCom;
+    CircleImageView drawerImage;
+    TextView drawerName;
+    FirebaseAuth auth;
+    FirebaseFirestore fStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +42,8 @@ public class navCom extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbarCom);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
+        auth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,6 +53,7 @@ public class navCom extends AppCompatActivity {
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout_com);
         NavigationView navigationView = findViewById(R.id.nav_view_com);
+        updateHeader();
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfigurationCom = new AppBarConfiguration.Builder(
@@ -59,5 +77,23 @@ public class navCom extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_complex);
         return NavigationUI.navigateUp(navController, mAppBarConfigurationCom)
                 || super.onSupportNavigateUp();
+    }
+
+    public void updateHeader(){
+        NavigationView navigationView = findViewById(R.id.nav_view_com);
+        View headerView = navigationView.getHeaderView(0);
+        drawerImage = headerView.findViewById(R.id.drawerImageCom);
+        drawerName = headerView.findViewById(R.id.drawerNameCom);
+        DocumentReference df = fStore.collection("users").document(auth.getUid());
+        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if(documentSnapshot.getString("url")!=null){
+                    Picasso.get().load(documentSnapshot.getString("url")).into(drawerImage);
+//                    Toast.makeText(navCom.this, ""+drawerImage + " " + documentSnapshot.getString("url"), Toast.LENGTH_SHORT).show();
+                }
+                drawerName.setText(documentSnapshot.getString("fName"));
+            }
+        });
     }
 }

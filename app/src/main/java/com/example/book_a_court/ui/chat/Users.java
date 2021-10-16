@@ -5,15 +5,32 @@ public class Users {
     String name;
     String email;
     String phone;
+    String uri=null;
 
     public Users() {
     }
 
-    public Users(String uid, String name, String email, String phone) {
+//    public Users(String uid, String name, String email, String phone) {
+//        this.uid = uid;
+//        this.name = name;
+//        this.email = email;
+//        this.phone = phone;
+//    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    public Users(String uid, String name, String email, String phone, String uri) {
         this.uid = uid;
         this.name = name;
         this.email = email;
         this.phone = phone;
+        this.uri = uri;
     }
 
     public String getUid() {

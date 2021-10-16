@@ -10,9 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.book_a_court.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -38,13 +41,16 @@ public class ChatUserAdapter extends RecyclerView.Adapter<ChatUserAdapter.ViewHo
         Users user = userNames.get(position);
 //        Log.d("chatTag", "onBindViewHolder: "+user.getName());
         holder.user_name.setText(user.getName());
+        if(user.uri!=null){
+            Picasso.get().load(user.getUri()).into(holder.circleImageView);
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(contextHere,ChatActivity.class);
                 intent.putExtra("name",user.name);
                 intent.putExtra("uid",user.getUid());
-//                intent.putExtra("ReceiverImage",)
+                intent.putExtra("ReceiverImage", user.getUri());
                 contextHere.startActivity(intent);
             }
         });

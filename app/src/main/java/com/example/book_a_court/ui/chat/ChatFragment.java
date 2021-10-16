@@ -80,7 +80,7 @@ public class ChatFragment extends Fragment {
                                     @Override
                                     public void onSuccess(DocumentSnapshot document) {
                                         Users user = new Users(document.getId(), document.getString("fName"),
-                                                document.getString("email"), document.getString("phone"));
+                                                document.getString("email"), document.getString("phone"),document.getString("url"));
 //                                        Log.d("newTag", document.getId() + " => " + document.getId() + document.getString("fName") + document.getString("email") + document.getString("phone"));
                                         userNames.add(user);
                                         chatUserAdapter.notifyDataSetChanged();
@@ -95,7 +95,7 @@ public class ChatFragment extends Fragment {
                                     @Override
                                     public void onSuccess(DocumentSnapshot document) {
                                         Users user = new Users(document.getId(), document.getString("fName"),
-                                                document.getString("email"), document.getString("phone"));
+                                                document.getString("email"), document.getString("phone"),document.getString("url"));
 //                                        Log.d("newTag", document.getId() + " => " + document.getId() + document.getString("fName") + document.getString("email") + document.getString("phone"));
                                         userNames.add(user);
                                         chatUserAdapter.notifyDataSetChanged();
