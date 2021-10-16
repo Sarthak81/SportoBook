@@ -7,6 +7,11 @@
     android:layout_margin="@dimen/_5sdp">
 
 
-
-
+    <androidx.cardview.widget.CardView
+        android:layout_width="352dp"
+        android:layout_height="216dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
