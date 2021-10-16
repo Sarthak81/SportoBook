@@ -18,6 +18,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.book_a_court.ui.complexPages.manage.addSport;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -69,7 +70,7 @@ public class login extends AppCompatActivity {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     if(documentSnapshot.getString("IsAdmin")!=null) {
-                        Intent intent = new Intent(getApplicationContext(), navCom.class);
+                        Intent intent = new Intent(getApplicationContext(), addSport.class);
                         pd.dismiss();
                         startActivity(intent);
                     }

@@ -6,19 +6,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.book_a_court.R;
-import com.example.book_a_court.ui.complexPages.GalleryFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
 
@@ -28,14 +29,22 @@ public class ManageFragment extends Fragment {
     ArrayList<Sport> sportArrayList;
     Button addNew;
     RecyclerView manageRecycler;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    DocumentReference documentReference;
+    String currentUserId;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_manage, container, false);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        currentUserId = user.getUid();
         sportArrayList = new ArrayList<>();
         addNew = root.findViewById(R.id.addNew);
         manageRecycler = root.findViewById(R.id.manageRecycler);
+ String sport_name;
+
 
         //addnew button fn below
         addNew.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +57,6 @@ public class ManageFragment extends Fragment {
 
 
 
-        // fetching data from database below
 
 
 
@@ -59,5 +67,24 @@ public class ManageFragment extends Fragment {
 //        manageRecycler.setAdapter(manageSportsAdapter);
 
         return root;
+    }
+
+
+    public void  get_data(String sport_name ,ArrayList< Sport > sportArrayList){
+        documentReference = db.collection("sports").document(currentUserId).collection("court").document("court_"+sport_name);
+        documentReference.addSnapshotListener(new EventListener< DocumentSnapshot >() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirebaseFirestoreException error) {
+
+                assert snapshot != null;
+                sportArrayList.set(0,  (Sport)snapshot.get("name"));
+                sportArrayList.set(1, (Sport) snapshot.get("price"));
+                sportArrayList.set(2, (Sport) snapshot.get("no_of_courts"));
+
+            }
+
+        });
+
+
     }
 }

@@ -339,7 +339,7 @@ public class Profile extends AppCompatActivity {
 
                 assert snapshot != null;
                 textPhone.setText(Objects.requireNonNull(snapshot.get("phone")).toString());
-                textName.setText(snapshot.getString("fName"));
+                textName.setText(snapshot.getString("fname"));
                 //if(textEmail.setText("")!=null;)
                 textEmail.setText(snapshot.getString("email"));
 
