@@ -7,6 +7,28 @@
     android:layout_margin="@dimen/_5sdp">
 
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="352dp"
+        android:layout_height="241dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="295dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="150dp"
+            android:text="TextView"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="115dp"
+            android:scrollbarSize="2dp" />
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
