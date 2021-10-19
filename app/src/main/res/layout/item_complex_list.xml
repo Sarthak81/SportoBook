@@ -10,34 +10,34 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/complexTile"
-        android:layout_width="352dp"
+        android:layout_width="0dp"
         android:layout_height="241dp"
+        android:padding="@dimen/_20sdp"
         app:cardCornerRadius="@dimen/_20sdp"
         app:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:padding="@dimen/_20sdp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/complex_name"
             android:layout_width="match_parent"
             android:layout_height="68dp"
-            android:layout_marginTop="150dp"
-            android:text="Complex Name"
             android:layout_marginLeft="5dp"
+            android:layout_marginTop="150dp"
             android:layout_marginRight="5dp"
-            android:textSize="24sp"
             android:fontFamily="@font/allerta"
-            android:padding="@dimen/_5sdp" />
+            android:padding="@dimen/_5sdp"
+            android:text="Complex Name"
+            android:textSize="24sp" />
 
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="255dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="90dp"
             android:padding="@dimen/_5sdp"
             android:scrollbarSize="2dp" />
     </androidx.cardview.widget.CardView>

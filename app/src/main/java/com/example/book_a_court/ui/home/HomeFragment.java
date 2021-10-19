@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,6 +46,8 @@ public class HomeFragment extends Fragment {
     FirebaseFirestore fStore;
     FirebaseAuth auth;
     ArrayList<Users> complexes ;
+    EditText search;
+    ImageButton searchbtn;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -54,6 +58,9 @@ public class HomeFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
         database = FirebaseDatabase.getInstance();
+
+        search = root.findViewById(R.id.Search);
+        searchbtn = root.findViewById(R.id.searchbtn);
 
         fStore.collection("users")
                 .get()
@@ -77,6 +84,36 @@ public class HomeFragment extends Fragment {
                         }
                     }
                 });
+
+        searchbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = search.getText().toString();
+                complexes.clear();
+                fStore.collection("users")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        if(document.getString("IsAdmin") != null && document.getString("fName").equals(s)) {
+                                            Log.d("Mytag", document.getId() + " => " + document.getId() + document.getString("fName") + document.getString("email") + document.getString("phone"));
+                                            Users user = new Users(document.getId(), document.getString("fName"),
+                                                    document.getString("email"), document.getString("phone"),document.getString("url"));
+                                            complexes.add(user);
+//                                      Log.d("user", "onComplete: "+user.getName());
+                                        }
+                                        complexListAdapter.notifyDataSetChanged();
+                                    }
+
+                                } else {
+                                    Log.d("TAG", "Error getting documents: ", task.getException());
+                                }
+                            }
+                        });
+            }
+        });
 
         complexList = root.findViewById(R.id.complexList);
         complexList.setLayoutManager(new LinearLayoutManager(getContext()));
