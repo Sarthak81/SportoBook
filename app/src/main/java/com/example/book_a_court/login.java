@@ -18,7 +18,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.example.book_a_court.ui.complexPages.manage.addSport;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -75,7 +74,8 @@ public class login extends AppCompatActivity {
                         startActivity(intent);
                     }
                     else{
-                        Intent intent = new Intent(getApplicationContext(), navPer.class);
+                        Intent intent = new Intent(getApplicationContext(), navCom.class);
+
                         startActivity(intent);
                     }
                 }
@@ -89,7 +89,7 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         mEmail = findViewById(R.id.loginMail);
         mPassword = findViewById(R.id.loginPass);
-       googleSign = findViewById(R.id.googleSign);
+        googleSign = findViewById(R.id.googleSign);
 //       googleOut = findViewById(R.id.googleOut);
         mLoginBtn = findViewById(R.id.cardView);
         complex = findViewById(R.id.complex);
@@ -104,20 +104,20 @@ public class login extends AppCompatActivity {
             @SuppressLint("ResourceAsColor")
             @Override
             public void onClick (View v){
-            activeUser = 1;
-            person.setBackgroundColor(android.R.color.transparent);
-            complex.setBackgroundColor(Color.parseColor("#3700B3"));
-        }
+                activeUser = 1;
+                person.setBackgroundColor(android.R.color.transparent);
+                complex.setBackgroundColor(Color.parseColor("#3700B3"));
+            }
         });
         complex.setOnClickListener(new View.OnClickListener()
         {
             @SuppressLint("ResourceAsColor")
             @Override
             public void onClick (View v){
-            activeUser = 0;
-            complex.setBackgroundColor(android.R.color.transparent);
-            person.setBackgroundColor(Color.parseColor("#3700B3"));
-        }
+                activeUser = 0;
+                complex.setBackgroundColor(android.R.color.transparent);
+                person.setBackgroundColor(Color.parseColor("#3700B3"));
+            }
         });
 
 
@@ -338,70 +338,69 @@ public class login extends AppCompatActivity {
                     }
                 });
     }
-   void checkEmailExistsOrNot(String email) {
-       DocumentReference documentReference = fStore.collection("users").document(userID);
-       fAuth.fetchSignInMethodsForEmail(email)
-               .addOnCompleteListener(new OnCompleteListener< SignInMethodQueryResult >() {
-                   @Override
-                   public void onComplete(@NonNull Task< SignInMethodQueryResult > task) {
-                       if (task.isSuccessful()) {
-                           boolean check = !task.getResult().getSignInMethods().isEmpty();
-                           if (!check) {
-                               if(activeUser==1){
-                                   Map<String,Object> user = new HashMap<>();
-                                   user.put("email",Email_P);
-                                   //user.put("phone",Phone);
-                                   user.put("fName",Name);
-                                   user.put("IsUser","1");
-                                   documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                       @Override
-                                       public void onSuccess(Void aVoid) {
-                                           Log.d(TAG, "onSuccess: user Profile is created for "+ userID);
-                                       }
-                                   }).addOnFailureListener(new OnFailureListener() {
-                                       @Override
-                                       public void onFailure(@NonNull Exception e) {
-                                           Log.d(TAG, "onFailure: " + e.toString());
-                                       }
-                                   });
+    void checkEmailExistsOrNot(String email) {
+        DocumentReference documentReference = fStore.collection("users").document(userID);
+        fAuth.fetchSignInMethodsForEmail(email)
+                .addOnCompleteListener(new OnCompleteListener< SignInMethodQueryResult >() {
+                    @Override
+                    public void onComplete(@NonNull Task< SignInMethodQueryResult > task) {
+                        if (task.isSuccessful()) {
+                            boolean check = !task.getResult().getSignInMethods().isEmpty();
+                            if (!check) {
+                                if(activeUser==1){
+                                    Map<String,Object> user = new HashMap<>();
+                                    user.put("email",Email_P);
+                                    //user.put("phone",Phone);
+                                    user.put("fName",Name);
+                                    user.put("IsUser","1");
+                                    documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "onSuccess: user Profile is created for "+ userID);
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.d(TAG, "onFailure: " + e.toString());
+                                        }
+                                    });
 
-                                   Intent intent =new Intent(getApplicationContext(),navPer.class);
-                                   startActivity(intent);}
+                                    Intent intent =new Intent(getApplicationContext(),navPer.class);
+                                    startActivity(intent);}
 
-                               else {
-                                   Map<String,Object> user = new HashMap<>();
-                                   user.put("email",Email_P);
-                                   //user.put("phone",Phone);
-                                   user.put("fName",Name);
-                                   user.put("IsAdmin","1");
-                                   documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                       @Override
-                                       public void onSuccess(Void aVoid) {
-                                           Log.d(TAG, "onSuccess: user Profile is created for "+ userID);
-                                       }
-                                   }).addOnFailureListener(new OnFailureListener() {
-                                       @Override
-                                       public void onFailure(@NonNull Exception e) {
-                                           Log.d(TAG, "onFailure: " + e.toString());
-                                       }
-                                   });
+                                else {
+                                    Map<String,Object> user = new HashMap<>();
+                                    user.put("email",Email_P);
+                                    //user.put("phone",Phone);
+                                    user.put("fName",Name);
+                                    user.put("IsAdmin","1");
+                                    documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "onSuccess: user Profile is created for "+ userID);
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.d(TAG, "onFailure: " + e.toString());
+                                        }
+                                    });
 
-                                   Intent intent =new Intent(getApplicationContext(),navCom.class);
-                                   startActivity(intent);
+                                    Intent intent =new Intent(getApplicationContext(),navCom.class);
+                                    startActivity(intent);
 
-                               }
+                                }
 
 
-                           } else {
-                               checkAccessLevel(userID);
-                              // Toast.makeText(getApplicationContext(), "email already exist", Toast.LENGTH_LONG).show();
+                            } else {
+                                checkAccessLevel(userID);
+                                // Toast.makeText(getApplicationContext(), "email already exist", Toast.LENGTH_LONG).show();
 //                               Intent intent =new Intent(getApplicationContext(),MainActivity.class);
 //                               startActivity(intent);
-                           }
-                       }
-                   }
-               });
-   }
+                            }
+                        }
+                    }
+                });
+    }
 
 }
-
