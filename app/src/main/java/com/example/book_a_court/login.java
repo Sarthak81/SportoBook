@@ -18,6 +18,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.book_a_court.ui.complexPages.gallery_images.gallery_main;
+import com.example.book_a_court.ui.complexPages.manage.video_upload;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -69,12 +71,12 @@ public class login extends AppCompatActivity {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     if(documentSnapshot.getString("IsAdmin")!=null) {
-                        Intent intent = new Intent(getApplicationContext(), navCom.class);
+                        Intent intent = new Intent(getApplicationContext(),navCom.class);
                         pd.dismiss();
                         startActivity(intent);
                     }
                     else{
-                        Intent intent = new Intent(getApplicationContext(), navCom.class);
+                        Intent intent = new Intent(getApplicationContext(), video_upload.class);
 
                         startActivity(intent);
                     }

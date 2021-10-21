@@ -16,11 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.book_a_court.R;
 import com.example.book_a_court.ui.complexPages.gallery_images.ImageUploadInfo;
-import com.example.book_a_court.ui.complexPages.gallery_images.gallery_main;
 import com.example.book_a_court.ui.complexPages.gallery_video.videoUploadInfo;
-import com.example.book_a_court.ui.complexPages.gallery_video.video_upload;
 import com.example.book_a_court.ui.complexPages.gallery_video.RecyclerVideoAdapter;
 import com.example.book_a_court.ui.complexPages.gallery_images.RecyclerViewAdapter;
+import com.example.book_a_court.ui.complexPages.gallery_images.gallery_main;
+import com.example.book_a_court.ui.complexPages.manage.video_upload;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -96,7 +96,7 @@ String l_uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         // The path is already defined in gallery_main.
         databaseReference = FirebaseDatabase.getInstance().getReference(gallery_main.Database_Path);
 
- databaseReference_vid=FirebaseDatabase.getInstance().getReference("Videos");
+ databaseReference_vid=FirebaseDatabase.getInstance().getReference("Videos").child(l_uid);
         // Adding Add Value Event Listener to databaseReference.
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -138,9 +138,10 @@ String l_uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 progressDialog.show();
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
 
-                    videoUploadInfo videoUploadInfo = postSnapshot.getValue(videoUploadInfo.class);
-                    Toast.makeText(getContext(), ""+videoUploadInfo.getVideoURL(), Toast.LENGTH_SHORT).show();
-                    list_vid.add(videoUploadInfo);
+                    videoUploadInfo videoUploadinfo = postSnapshot.getValue(videoUploadInfo.class);
+                    assert videoUploadinfo != null;
+                   // Toast.makeText(getContext(), ""+videoUploadinfo.getVideoURL(), Toast.LENGTH_SHORT).show();
+                    list_vid.add(videoUploadinfo);
 
 
                 }
@@ -160,7 +161,9 @@ String l_uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 progressDialog.dismiss();
 
             }
+
         });
+
 
 
 

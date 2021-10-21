@@ -1,4 +1,4 @@
-package com.example.book_a_court.ui.complexPages.gallery_video;
+package com.example.book_a_court.ui.complexPages.manage;
 
 
 
@@ -29,6 +29,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.example.book_a_court.ui.complexPages.gallery_images.ImageUploadInfo;
+import com.example.book_a_court.ui.complexPages.gallery_images.gallery_main;
+import com.example.book_a_court.ui.complexPages.gallery_video.videoUploadInfo;
 import com.google.android.gms.tasks.OnFailureListener;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -56,7 +59,7 @@ import java.util.HashMap;
 
 public class video_upload extends AppCompatActivity {
 
-
+public static int d=0;
 
     Button uploadv;
 
@@ -167,32 +170,48 @@ final static String data_path="Videos";
 
                 @Override
 
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                    Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-
-                    while (!uriTask.isSuccessful()) ;
-
-                    // get the link of video
-
-                    String downloadUri = uriTask.getResult().toString();
-
-                    DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Videos").child(user_id);
-
-                    HashMap<String, String> map = new HashMap<>();
-
-                    map.put("videolink", downloadUri);
-
-                    reference1.setValue(map);
-                    Toast.makeText(video_upload.this, ""+downloadUri, Toast.LENGTH_SHORT).show();
+               public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//
+//                    Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+//
+//                    while (!uriTask.isSuccessful()) ;
+//
+//                    // get the link of video
+//
+//                    String downloadUri = uriTask.getResult().toString();
+//
+                   DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Videos").child(user_id).child(String.valueOf(++d));
+//
+//                    HashMap<String, String> map = new HashMap<>();
+//
+//                    map.put("videoURL", downloadUri);
+//
+//                    reference1.setValue(map);
+//                    Toast.makeText(video_upload.this, ""+downloadUri, Toast.LENGTH_SHORT).show();
                     //ImageUploadInfo imageUploadInfo = new ImageUploadInfo(TempImageName, profileImageUrl.toString());
-  videoUploadInfo videoUploadinfo =new videoUploadInfo(downloadUri);
+
   //videoUploadInfo videoUploadinfo= new videoUploadInfo(set)
                     // Video uploaded successfully
-                   String videoUploadId = reference1.push().getKey();
-////
-////                                    // Adding image upload id s child element into databaseReference.
-            reference1.child(videoUploadId).setValue(videoUploadinfo);
+//                   String videoUploadId = reference1.push().getKey();
+                    reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener< Uri >() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Uri downloadUri = uri;
+                            //Do what you want with the url
+                            Toast.makeText(video_upload.this, "Upload done"+downloadUri.toString(), Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        videoUploadInfo videoUploadinfo =new videoUploadInfo(downloadUri.toString());
+
+
+//
+//                                    // Adding image upload id s child element into databaseReference.
+                            reference1.setValue(videoUploadinfo);
+                        }
+                    });
+
+//////
+//////                                    // Adding image upload id s child element into databaseReference.
+//            reference1.child(videoUploadId).setValue(videoUploadinfo);
 
                     // Dismiss dialog
 
