@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:background="#C1B9B9"
+    tools:context=".ui.complexPages.gallery_images.gallery_main">
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Firebase Image Upload Tutorial"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/ShowImageView"
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/textview"
+        android:layout_marginTop="20dp"
+        android:background="#FFFFFF"
+        app:srcCompat="@drawable/chatprofile" />
+
+    <Button
+        android:id="@+id/ButtonChooseImage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ShowImageView"
+        android:layout_marginTop="20dp"
+        android:text="Choose Image" />
+
+    <EditText
+        android:id="@+id/ImageNameEditText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ButtonChooseImage"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:hint="Enter Image Name Here"
+        android:textColor="#231F1F"
+        android:textColorHint="#1E1515" />
+
+    <Button
+        android:id="@+id/ButtonUploadImage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ImageNameEditText"
+        android:layout_marginTop="20dp"
+        android:text="Upload image to Firebase Storage" />
+
+    <Button
+        android:id="@+id/DisplayImagesButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ButtonUploadImage"
+        android:layout_marginTop="10dp"
+        android:text="Show All Uploaded Images" />
+
+</RelativeLayout>
