@@ -64,7 +64,7 @@ public class Profile extends AppCompatActivity {
     DocumentReference documentReference;
     private static final int PICK_IMAGE = 1;
     String currentUserId;
-    //FirebaseAuth fAuth=FirebaseAuth.getInstance();
+    FirebaseFirestore fStore;
     public static final String TAG = "TAG";
     TextView textName,textEmail,textPhone,editName,editEmail,editPhone,doneName,donePhone;
     EditText editPerName,editPerEmail,editPerPhone;
@@ -94,6 +94,7 @@ public class Profile extends AppCompatActivity {
         //textEmail.setText("hello");
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        fStore = FirebaseFirestore.getInstance();
         assert user != null;
 
         currentUserId = user.getUid();
@@ -113,9 +114,20 @@ public class Profile extends AppCompatActivity {
         bbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(getApplicationContext(), navPer.class);
-                startActivity(intent);
+                DocumentReference df = fStore.collection("users").document(Objects.requireNonNull(currentUserId));
+                df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(documentSnapshot.getString("IsAdmin")!=null) {
+                            Intent intent = new Intent(getApplicationContext(),navCom.class);
+                            startActivity(intent);
+                        }
+                        else{
+                            Intent intent = new Intent(getApplicationContext(), navPer.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
             }
         });
 

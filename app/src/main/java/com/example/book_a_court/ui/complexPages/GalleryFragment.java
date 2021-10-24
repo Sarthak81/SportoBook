@@ -77,13 +77,13 @@ add_vid=root.findViewById(R.id.video_add);
 
 
         // Showing progress dialog.
-add_vid.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Intent intent=new Intent(getActivity(), video_upload.class);
-        startActivity(intent);
-    }
-});
+        add_vid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), video_upload.class);
+                startActivity(intent);
+            }
+        });
         add_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

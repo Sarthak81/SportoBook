@@ -76,7 +76,7 @@ public class login extends AppCompatActivity {
                         startActivity(intent);
                     }
                     else{
-                        Intent intent = new Intent(getApplicationContext(), video_upload.class);
+                        Intent intent = new Intent(getApplicationContext(), navPer.class);
 
                         startActivity(intent);
                     }
