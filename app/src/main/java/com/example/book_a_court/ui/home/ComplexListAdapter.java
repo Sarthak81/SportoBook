@@ -1,6 +1,7 @@
 package com.example.book_a_court.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,15 @@ public class ComplexListAdapter extends RecyclerView.Adapter<ComplexListAdapter.
         Users user = complexList.get(position);
 //        Log.d("chatTag", "onBindViewHolder: "+user.getName());
         holder.complex_name.setText(user.getName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(contextHere,ComplexDesc.class);
+                intent.putExtra("cName",user.getName());
+                intent.putExtra("uid",user.getUid());
+                contextHere.startActivity(intent);
+            }
+        });
 
     }
 
