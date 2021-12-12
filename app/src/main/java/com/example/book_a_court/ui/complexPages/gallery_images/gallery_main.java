@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.book_a_court.ui.complexPages.GalleryFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -48,10 +49,12 @@ public class gallery_main extends AppCompatActivity {
 
     // Creating URI.
     Uri FilePathUri;
+    String uid;
 
     // Creating StorageReference and DatabaseReference object.
     StorageReference storageReference;
     DatabaseReference databaseReference;
+    FirebaseAuth fauth;
 
     // Image request code for onActivityResult() .
     int Image_Request_Code = 7;
@@ -68,7 +71,8 @@ public class gallery_main extends AppCompatActivity {
 
         // Assign FirebaseDatabase instance with root database name.
         databaseReference = FirebaseDatabase.getInstance().getReference(Database_Path);
-
+        fauth = FirebaseAuth.getInstance();
+        uid = fauth.getUid().toString();
         //Assign ID'S to button.
         ChooseButton = (Button)findViewById(R.id.ButtonChooseImage);
         UploadButton = (Button)findViewById(R.id.ButtonUploadImage);
@@ -192,10 +196,11 @@ public class gallery_main extends AppCompatActivity {
                                     progressDialog.dismiss();
                                     ImageUploadInfo imageUploadInfo = new ImageUploadInfo(TempImageName, profileImageUrl.toString());
 
-                                    String ImageUploadId = databaseReference.push().getKey();
+                                    String ImageUploadId = databaseReference.child(uid).push().getKey();
+                                    Toast.makeText(gallery_main.this, uid, Toast.LENGTH_SHORT).show();
 //
 //                                    // Adding image upload id s child element into databaseReference.
-                                 databaseReference.child(ImageUploadId).setValue(imageUploadInfo);
+                                 databaseReference.child(uid).child(ImageUploadId).setValue(imageUploadInfo);
                                 }
                                 //Toast.makeText(, "Upload Done", Toast.LENGTH_LONG.show();
 
