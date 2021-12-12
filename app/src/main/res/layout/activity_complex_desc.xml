@@ -25,7 +25,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/complex_desc_recycler"
                 android:layout_width="match_parent"
-                android:layout_height="230dp" />
+                android:layout_height="230dp"
+                android:orientation="horizontal"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -76,6 +77,21 @@
                 android:textSize="@dimen/_12sdp" />
 
             <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:padding="@dimen/_8sdp"
+                android:text="Court Prices (hourly)"
+                android:textColor="#221F1F"
+                android:textSize="@dimen/_15sdp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/price_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
                 android:id="@+id/textView10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -93,25 +109,21 @@
                 android:progressTint="#8685ef"
                 android:padding="@dimen/_5sdp" />
 
+            <Button
+                android:id="@+id/bookbtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@color/teal_200"
+                android:backgroundTint="@color/teal_700"
+                android:padding="@dimen/_8sdp"
+                android:shadowColor="#FFFFFF"
+                android:text="Book Now"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/_12sdp"
+                app:backgroundTint="#00838F" />
+
         </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/bookbtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
-        android:background="@color/teal_200"
-        android:backgroundTint="@color/teal_700"
-        android:padding="@dimen/_8sdp"
-        android:shadowColor="#FFFFFF"
-        android:text="Book Now"
-        android:textColor="#FFFFFF"
-        android:textSize="@dimen/_12sdp"
-        app:backgroundTint="#00838F"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
