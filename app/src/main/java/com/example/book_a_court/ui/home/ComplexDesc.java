@@ -9,9 +9,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.book_a_court.R;
@@ -31,6 +35,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
@@ -40,8 +45,8 @@ import java.util.List;
 
 public class ComplexDesc extends AppCompatActivity {
     String complex_name,complex_uid;
-    TextView complex_desc_name;
-    TextView complex_desc_rating;
+    TextView complex_desc_name,time1,time2;
+    TextView complex_desc_rating,avail;
     RecyclerView complex_desc_recycler,priceList;
     RatingBar ratingStars;
     FirebaseFirestore db;
@@ -50,6 +55,9 @@ public class ComplexDesc extends AppCompatActivity {
     PriceListAdapter priceListAdapter;
     RecyclerViewAdapter adapter1;
 
+    CalendarView calendarView;
+    int d,m,y,hr1,hr2;
+    ArrayList<String> spinnerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +71,9 @@ public class ComplexDesc extends AppCompatActivity {
         complex_desc_name = findViewById(R.id.complex_desc_name);
         complex_desc_rating = findViewById(R.id.complex_desc_rating);
         complex_desc_recycler = findViewById(R.id.complex_desc_recycler);
+        avail = findViewById(R.id.avail);
+        time1 = findViewById(R.id.time1);
+        time2 = findViewById(R.id.time2);
         priceList = findViewById(R.id.price_list);
         bookBtn = findViewById(R.id.bookbtn);
 
@@ -71,7 +82,7 @@ public class ComplexDesc extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         complex_desc_recycler.setHasFixedSize(true);
         complex_desc_recycler.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
-        Toast.makeText(getApplicationContext(), "hello", Toast.LENGTH_SHORT).show();
+        spinnerList = new ArrayList<>();
 
         db.collection("sports").document(complex_uid).collection("court")
                 .get()
@@ -82,6 +93,7 @@ public class ComplexDesc extends AppCompatActivity {
                             Sport sport = new Sport(snapshot.getString("court_name"),snapshot.get("court_price").toString(),snapshot.get("court_number").toString());
                             Log.d("newestTag", "onSuccess: " + (snapshot.getString("court_name")+snapshot.get("court_price").toString()+snapshot.get("court_number").toString()));
                             sportArrayList.add(sport);
+                            spinnerList.add(sport.getName());
                         }
                         priceListAdapter.notifyDataSetChanged();
                     }
@@ -97,6 +109,63 @@ public class ComplexDesc extends AppCompatActivity {
             }
         });
 
+        Spinner dropdown = findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,spinnerList);
+        dropdown.setAdapter(adapter);
+
+        calendarView = findViewById(R.id.calendarView);
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                d=dayOfMonth;
+                m=month;
+                y = year;
+            }
+        });
+
+//        TimePicker timePicker = findViewById(R.id.simpleTimePicker);
+//        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+//            @Override
+//            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+//                hrs = hourOfDay;
+//                min = minute;
+//            }
+//        });
+
+//        hr1 = Integer.parseInt(time1.getText().toString());
+//        hr2 = Integer.parseInt(time2.getText().toString());
+
+        Time time = new Time(d,m,y,hr1,hr2);
+
+        //fetching availability
+        db.collection("bookings").document(complex_uid).collection(String.valueOf(d+'/'+m+'/'+y))
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            boolean flag=true;
+                            for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                                if(documentSnapshot.get("day").toString()==String.valueOf(time.getD()) &&
+                                        documentSnapshot.get("month").toString()==String.valueOf(time.getM()) &&
+                                        documentSnapshot.get("year").toString()==String.valueOf(time.getD()) ){
+                                    int tmp1 = Integer.parseInt(documentSnapshot.get("hr1").toString());
+                                    int tmp2 = Integer.parseInt(documentSnapshot.get("hr2").toString());
+                                    if((tmp1>=hr1 && tmp1<hr2) || (tmp2>hr1 && tmp2<=hr2)){
+                                        avail.setText("Unavailable");
+                                        avail.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+                                        flag = false;
+                                        break;
+                                    }
+                                }
+                            }
+                            if(flag){
+                                avail.setText("Available");
+                                avail.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+                            }
+                        }
+                    }
+                });
         complex_desc_name.setText(complex_name);
         ratingStars = findViewById(R.id.ratingBar2);
         ratingStars.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -144,15 +213,15 @@ public class ComplexDesc extends AppCompatActivity {
                     ImageUploadInfo imageUploadInfo = postSnapshot.getValue(ImageUploadInfo.class);
 
                     list.add(imageUploadInfo);
-                    Toast.makeText(getApplicationContext(), ""+list.size(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(), ""+list.size(), Toast.LENGTH_SHORT).show();
                     // Toast.makeText(getApplicationContext(), ""+imageUploadInfo.getImageURL(), Toast.LENGTH_SHORT).show();
-                  //  adapter1.notifyDataSetChanged();
+//                    adapter1.notifyDataSetChanged();
                 }
 
                 adapter1 = new RecyclerViewAdapter(getApplicationContext(), list);
 
                 complex_desc_recycler.setAdapter(adapter1);
-                Toast.makeText(getApplicationContext(), ""+list.size(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), ""+list.size(), Toast.LENGTH_SHORT).show();
 
                 // Hiding the progress dialog.
 //                progressDialog.dismiss();
