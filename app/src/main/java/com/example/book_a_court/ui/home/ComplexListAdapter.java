@@ -22,9 +22,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ComplexListAdapter extends RecyclerView.Adapter<ComplexListAdapter.ViewHolder> {
     Context contextHere;
-    ArrayList<Users> complexList;
+    ArrayList<complexUsers> complexList;
 
-    public ComplexListAdapter(Context contextHere, ArrayList<Users> complexList) {
+    public ComplexListAdapter(Context contextHere, ArrayList<complexUsers> complexList) {
         this.contextHere = contextHere;
         this.complexList = complexList;
     }
@@ -40,8 +40,9 @@ public class ComplexListAdapter extends RecyclerView.Adapter<ComplexListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Users user = complexList.get(position);
+        complexUsers user = complexList.get(position);
 //        Log.d("chatTag", "onBindViewHolder: "+user.getName());
+        holder.ratingBar.setRating(user.getRating());
         holder.complex_name.setText(user.getName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

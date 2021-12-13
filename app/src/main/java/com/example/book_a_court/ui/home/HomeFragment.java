@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment {
     FirebaseDatabase database;
     FirebaseFirestore fStore;
     FirebaseAuth auth;
-    ArrayList<Users> complexes ;
+    ArrayList<complexUsers> complexes ;
     EditText search;
     ImageButton searchbtn;
 
@@ -70,13 +70,33 @@ public class HomeFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                     if(document.getString("IsAdmin") != null) {
+                                        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+                                        DatabaseReference mRatingBarCh = rootRef.child("ratings").child(document.getId());
+
+                                        mRatingBarCh.addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                float total=0,num=0;
+                                                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                                                    total = total+Float.parseFloat(postSnapshot.getValue().toString());
+                                                    num++;
+                                                }
+                                                float avgrating= total/num;
+                                                complexUsers user = new complexUsers(document.getId(), document.getString("fName"),
+                                                        document.getString("email"), document.getString("phone"),document.getString("url"),avgrating);
+                                                complexes.add(user);
+                                                complexListAdapter.notifyDataSetChanged();
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
                                         Log.d("Mytag", document.getId() + " => " + document.getId() + document.getString("fName") + document.getString("email") + document.getString("phone"));
-                                        Users user = new Users(document.getId(), document.getString("fName"),
-                                                document.getString("email"), document.getString("phone"),document.getString("url"));
-                                        complexes.add(user);
+
 //                                      Log.d("user", "onComplete: "+user.getName());
                                     }
-                                    complexListAdapter.notifyDataSetChanged();
                             }
 
                         } else {
@@ -98,13 +118,33 @@ public class HomeFragment extends Fragment {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                         if(document.getString("IsAdmin") != null && document.getString("fName").equals(s)) {
+                                            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+                                            DatabaseReference mRatingBarCh = rootRef.child("ratings").child(document.getId());
+
+                                            mRatingBarCh.addValueEventListener(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    float total=0,num=0;
+                                                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                                                        total = total+Float.parseFloat(postSnapshot.getValue().toString());
+                                                        num++;
+                                                    }
+                                                    float avgrating= total/num;
+                                                    complexUsers user = new complexUsers(document.getId(), document.getString("fName"),
+                                                            document.getString("email"), document.getString("phone"),document.getString("url"),avgrating);
+                                                    complexes.add(user);
+                                                    complexListAdapter.notifyDataSetChanged();
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
                                             Log.d("Mytag", document.getId() + " => " + document.getId() + document.getString("fName") + document.getString("email") + document.getString("phone"));
-                                            Users user = new Users(document.getId(), document.getString("fName"),
-                                                    document.getString("email"), document.getString("phone"),document.getString("url"));
-                                            complexes.add(user);
+
 //                                      Log.d("user", "onComplete: "+user.getName());
                                         }
-                                        complexListAdapter.notifyDataSetChanged();
                                     }
 
                                 } else {
