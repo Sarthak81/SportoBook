@@ -94,7 +94,7 @@ add_vid=root.findViewById(R.id.video_add);
 String l_uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         // Setting up Firebase image upload folder path in databaseReference.
         // The path is already defined in gallery_main.
-        databaseReference = FirebaseDatabase.getInstance().getReference(gallery_main.Database_Path);
+        databaseReference = FirebaseDatabase.getInstance().getReference(gallery_main.Database_Path).child(l_uid);
 
  databaseReference_vid=FirebaseDatabase.getInstance().getReference("Videos").child(l_uid);
         // Adding Add Value Event Listener to databaseReference.

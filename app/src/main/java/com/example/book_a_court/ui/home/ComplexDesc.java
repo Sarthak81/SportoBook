@@ -15,17 +15,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.book_a_court.R;
+import com.example.book_a_court.ui.complexPages.gallery_images.ImageUploadInfo;
+import com.example.book_a_court.ui.complexPages.gallery_images.RecyclerViewAdapter;
+import com.example.book_a_court.ui.complexPages.gallery_images.gallery_main;
 import com.example.book_a_court.ui.complexPages.manage.ManageSportsAdapter;
 import com.example.book_a_court.ui.complexPages.manage.Sport;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class ComplexDesc extends AppCompatActivity {
     String complex_name,complex_uid;
@@ -37,12 +48,15 @@ public class ComplexDesc extends AppCompatActivity {
     Button bookBtn;
     ArrayList<Sport> sportArrayList;
     PriceListAdapter priceListAdapter;
+    RecyclerViewAdapter adapter1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complex_desc);
-
+        DatabaseReference databaseReference1;
+        List< ImageUploadInfo > list = new ArrayList<>();
         complex_name = getIntent().getStringExtra("cName");
         complex_uid = getIntent().getStringExtra("uid");
 
@@ -55,6 +69,9 @@ public class ComplexDesc extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         sportArrayList = new ArrayList<>();
         db = FirebaseFirestore.getInstance();
+        complex_desc_recycler.setHasFixedSize(true);
+        complex_desc_recycler.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+        Toast.makeText(getApplicationContext(), "hello", Toast.LENGTH_SHORT).show();
 
         db.collection("sports").document(complex_uid).collection("court")
                 .get()
@@ -107,6 +124,58 @@ public class ComplexDesc extends AppCompatActivity {
 
             }
         });
+
+        //String l_uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        // Setting up Firebase image upload folder path in databaseReference.
+        // The path is already defined in gallery_main.
+        databaseReference1 = FirebaseDatabase.getInstance().getReference(gallery_main.Database_Path).child(complex_uid);
+
+       // databaseReference_vid=FirebaseDatabase.getInstance().getReference("Videos").child(l_uid);
+        // Adding Add Value Event Listener to databaseReference.
+        databaseReference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NotNull DataSnapshot snapshot) {
+
+//                progressDialog.setMessage("Loading Images From Firebase.");
+//                progressDialog.show();
+
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+
+                    ImageUploadInfo imageUploadInfo = postSnapshot.getValue(ImageUploadInfo.class);
+
+                    list.add(imageUploadInfo);
+                    Toast.makeText(getApplicationContext(), ""+list.size(), Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(getApplicationContext(), ""+imageUploadInfo.getImageURL(), Toast.LENGTH_SHORT).show();
+                  //  adapter1.notifyDataSetChanged();
+                }
+
+                adapter1 = new RecyclerViewAdapter(getApplicationContext(), list);
+
+                complex_desc_recycler.setAdapter(adapter1);
+                Toast.makeText(getApplicationContext(), ""+list.size(), Toast.LENGTH_SHORT).show();
+
+                // Hiding the progress dialog.
+//                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NotNull DatabaseError databaseError) {
+
+                // Hiding the progress dialog.
+               // progressDialog.dismiss();
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+
 
         priceList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         priceListAdapter = new PriceListAdapter(getApplicationContext(), sportArrayList);
