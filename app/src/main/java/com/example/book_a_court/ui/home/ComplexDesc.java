@@ -22,6 +22,7 @@ import com.example.book_a_court.R;
 import com.example.book_a_court.ui.complexPages.gallery_images.ImageUploadInfo;
 import com.example.book_a_court.ui.complexPages.gallery_images.RecyclerViewAdapter;
 import com.example.book_a_court.ui.complexPages.gallery_images.gallery_main;
+import com.example.book_a_court.ui.complexPages.gallery_video.videoUploadInfo;
 import com.example.book_a_court.ui.complexPages.manage.ManageSportsAdapter;
 import com.example.book_a_court.ui.complexPages.manage.Sport;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -54,11 +55,12 @@ public class ComplexDesc extends AppCompatActivity {
     ArrayList<Sport> sportArrayList;
     PriceListAdapter priceListAdapter;
     RecyclerViewAdapter adapter1;
-
+    int myRating = 0;
+    Button ratebtn;
     CalendarView calendarView;
     int d,m,y,hr1,hr2;
     ArrayList<String> spinnerList;
-
+    float avgrating =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,41 +140,64 @@ public class ComplexDesc extends AppCompatActivity {
         Time time = new Time(d,m,y,hr1,hr2);
 
         //fetching availability
-        db.collection("bookings").document(complex_uid).collection(String.valueOf(d+'/'+m+'/'+y))
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            boolean flag=true;
-                            for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
-                                if(documentSnapshot.get("day").toString()==String.valueOf(time.getD()) &&
-                                        documentSnapshot.get("month").toString()==String.valueOf(time.getM()) &&
-                                        documentSnapshot.get("year").toString()==String.valueOf(time.getD()) ){
-                                    int tmp1 = Integer.parseInt(documentSnapshot.get("hr1").toString());
-                                    int tmp2 = Integer.parseInt(documentSnapshot.get("hr2").toString());
-                                    if((tmp1>=hr1 && tmp1<hr2) || (tmp2>hr1 && tmp2<=hr2)){
-                                        avail.setText("Unavailable");
-                                        avail.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
-                                        flag = false;
-                                        break;
-                                    }
-                                }
-                            }
-                            if(flag){
-                                avail.setText("Available");
-                                avail.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
-                            }
-                        }
-                    }
-                });
+//        db.collection("bookings").document(complex_uid).collection(String.valueOf(d+'/'+m+'/'+y))
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if(task.isSuccessful()){
+//                            boolean flag=true;
+//                            for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
+//                                if(documentSnapshot.get("day").toString()==String.valueOf(time.getD()) &&
+//                                        documentSnapshot.get("month").toString()==String.valueOf(time.getM()) &&
+//                                        documentSnapshot.get("year").toString()==String.valueOf(time.getD()) ){
+//                                    int tmp1 = Integer.parseInt(documentSnapshot.get("hr1").toString());
+//                                    int tmp2 = Integer.parseInt(documentSnapshot.get("hr2").toString());
+//                                    if((tmp1>=hr1 && tmp1<hr2) || (tmp2>hr1 && tmp2<=hr2)){
+//                                        avail.setText("Unavailable");
+//                                        avail.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+//                                        flag = false;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                            if(flag){
+//                                avail.setText("Available");
+//                                avail.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+//                            }
+//                        }
+//                    }
+//                });
+
+
         complex_desc_name.setText(complex_name);
         ratingStars = findViewById(R.id.ratingBar2);
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference mRatingBarCh = rootRef.child("ratings").child(complex_uid);
+
+        mRatingBarCh.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                float total=0,num=0;
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    total = total+Float.parseFloat(postSnapshot.getValue().toString());
+                    num++;
+                }
+                    avgrating= total/num;
+                complex_desc_rating.setText(String.valueOf(avgrating) + "/5");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         ratingStars.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                 int rating = (int) v;
                 String message = null;
+                myRating  =(int) ratingBar.getRating();
                 switch(rating){
                     case 1:
                         message="We apologize for inconvenience!";
@@ -190,10 +215,16 @@ public class ComplexDesc extends AppCompatActivity {
                         message="Awesome! You are the best!";
                         break;
                 }
-
+                Toast.makeText(ComplexDesc.this,message, Toast.LENGTH_SHORT).show();
             }
         });
-
+        findViewById(R.id.ratebutton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                float rating = ratingStars.getRating();
+                mRatingBarCh.child(user.getUid()).setValue(String.valueOf(rating));
+            }
+        });
         //String l_uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         // Setting up Firebase image upload folder path in databaseReference.
         // The path is already defined in gallery_main.
