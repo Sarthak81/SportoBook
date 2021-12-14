@@ -1,6 +1,7 @@
 package com.example.book_a_court;
 
 import android.os.Bundle;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 
@@ -8,6 +9,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.appcompat.widget.PopupMenu;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -30,8 +32,10 @@ public class navPer extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                PopupMenu popup = new PopupMenu(getApplicationContext(), fab);
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.crop_image_menu, popup.getMenu());
+                popup.show();
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
