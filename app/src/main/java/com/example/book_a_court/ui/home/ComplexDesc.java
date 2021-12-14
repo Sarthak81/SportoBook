@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -45,7 +46,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComplexDesc extends AppCompatActivity {
-    String complex_name,complex_uid;
+    String complex_name,complex_uid,sport_name;
     TextView complex_desc_name,time1,time2;
     TextView complex_desc_rating,avail;
     RecyclerView complex_desc_recycler,priceList;
@@ -61,6 +62,11 @@ public class ComplexDesc extends AppCompatActivity {
     int d,m,y,hr1,hr2;
     ArrayList<String> spinnerList;
     float avgrating =0;
+    int size;
+    String[] spinnerArr;
+    ArrayAdapter<String> adapter;
+    Spinner dropdown;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +92,7 @@ public class ComplexDesc extends AppCompatActivity {
         complex_desc_recycler.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
         spinnerList = new ArrayList<>();
 
+
         db.collection("sports").document(complex_uid).collection("court")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -97,23 +104,28 @@ public class ComplexDesc extends AppCompatActivity {
                             sportArrayList.add(sport);
                             spinnerList.add(sport.getName());
                         }
+                        size = spinnerList.size();
+                        spinnerArr = new String[size];
+                        for(int i=0;i<size;i++){
+                            spinnerArr[i]=spinnerList.get(i);
+                        }
+                        dropdown = findViewById(R.id.spinner);
+                        adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,spinnerArr);
+                        dropdown.setAdapter(adapter);
+                        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                sport_name = parent.getSelectedItem().toString();
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
                         priceListAdapter.notifyDataSetChanged();
                     }
                 });
-
-        bookBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),complex_avail.class);
-                intent.putExtra("cName",complex_name);
-                intent.putExtra("uid",complex_uid);
-                startActivity(intent);
-            }
-        });
-
-        Spinner dropdown = findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,spinnerList);
-        dropdown.setAdapter(adapter);
 
         calendarView = findViewById(R.id.calendarView);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -125,19 +137,23 @@ public class ComplexDesc extends AppCompatActivity {
             }
         });
 
-//        TimePicker timePicker = findViewById(R.id.simpleTimePicker);
-//        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-//            @Override
-//            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-//                hrs = hourOfDay;
-//                min = minute;
-//            }
-//        });
-
-//        hr1 = Integer.parseInt(time1.getText().toString());
-//        hr2 = Integer.parseInt(time2.getText().toString());
-
-        Time time = new Time(d,m,y,hr1,hr2);
+        bookBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),complex_fare.class);
+                hr1 = Integer.parseInt(time1.getText().toString());
+                hr2 = Integer.parseInt(time2.getText().toString());
+                intent.putExtra("cName",complex_name);
+                intent.putExtra("uid",complex_uid);
+                intent.putExtra("day",d);
+                intent.putExtra("month",m);
+                intent.putExtra("year",y);
+                intent.putExtra("hr1",hr1);
+                intent.putExtra("hr2",hr2);
+                intent.putExtra("sport_name",sport_name);
+                startActivity(intent);
+            }
+        });
 
         //fetching availability
 //        db.collection("bookings").document(complex_uid).collection(String.valueOf(d+'/'+m+'/'+y))
@@ -225,44 +241,30 @@ public class ComplexDesc extends AppCompatActivity {
                 mRatingBarCh.child(user.getUid()).setValue(String.valueOf(rating));
             }
         });
-        //String l_uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        // Setting up Firebase image upload folder path in databaseReference.
-        // The path is already defined in gallery_main.
+
         databaseReference1 = FirebaseDatabase.getInstance().getReference(gallery_main.Database_Path).child(complex_uid);
 
-       // databaseReference_vid=FirebaseDatabase.getInstance().getReference("Videos").child(l_uid);
         // Adding Add Value Event Listener to databaseReference.
+
         databaseReference1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NotNull DataSnapshot snapshot) {
-
-//                progressDialog.setMessage("Loading Images From Firebase.");
-//                progressDialog.show();
 
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
 
                     ImageUploadInfo imageUploadInfo = postSnapshot.getValue(ImageUploadInfo.class);
 
                     list.add(imageUploadInfo);
-//                    Toast.makeText(getApplicationContext(), ""+list.size(), Toast.LENGTH_SHORT).show();
-                    // Toast.makeText(getApplicationContext(), ""+imageUploadInfo.getImageURL(), Toast.LENGTH_SHORT).show();
 //                    adapter1.notifyDataSetChanged();
                 }
 
                 adapter1 = new RecyclerViewAdapter(getApplicationContext(), list);
 
                 complex_desc_recycler.setAdapter(adapter1);
-//                Toast.makeText(getApplicationContext(), ""+list.size(), Toast.LENGTH_SHORT).show();
-
-                // Hiding the progress dialog.
-//                progressDialog.dismiss();
             }
 
             @Override
             public void onCancelled(@NotNull DatabaseError databaseError) {
-
-                // Hiding the progress dialog.
-               // progressDialog.dismiss();
 
             }
         });
