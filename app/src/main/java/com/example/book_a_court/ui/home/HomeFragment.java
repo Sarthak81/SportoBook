@@ -40,6 +40,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class HomeFragment extends Fragment {
 
@@ -119,7 +121,13 @@ public class HomeFragment extends Fragment {
                             });
                 }
                 if(position==1){
-
+                    Collections.sort(complexes, new Comparator<complexUsers>() {
+                        @Override
+                        public int compare(complexUsers o1, complexUsers o2) {
+                            return Float.compare(o2.getRating(),o1.getRating());
+                        }
+                    });
+                    complexListAdapter.notifyDataSetChanged();
                 }
             }
 
