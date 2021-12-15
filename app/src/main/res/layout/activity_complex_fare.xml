@@ -6,4 +6,138 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.complex_fare">
 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_120sdp"
+        android:background="@color/teal_700"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="@dimen/_5sdp"
+                android:text="Complex Name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp" />
+
+            <TextView
+                android:id="@+id/fare_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/teal_200"
+                android:padding="@dimen/_5sdp"
+                android:text="TextView"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="@dimen/_5sdp"
+                android:text="Sport Name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp" />
+
+            <TextView
+                android:id="@+id/fare_sport"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/teal_200"
+                android:padding="@dimen/_5sdp"
+                android:text="TextView"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="@dimen/_5sdp"
+                android:text="Duration (in hrs)"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp" />
+
+            <TextView
+                android:id="@+id/fare_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/teal_200"
+                android:padding="@dimen/_5sdp"
+                android:text="TextView"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="@dimen/_5sdp"
+                android:text="Fare"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp" />
+
+            <TextView
+                android:id="@+id/fare_fare"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/teal_200"
+                android:padding="@dimen/_5sdp"
+                android:text="TextView"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp" />
+
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/proceed_to_pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:background="#558B2F"
+        android:backgroundTint="@color/teal_700"
+        android:fontFamily="@font/belgrano"
+        android:padding="@dimen/_8sdp"
+        android:shadowColor="#FFFFFF"
+        android:text="Proceed to Pay"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_12sdp"
+        app:backgroundTint="#558B2F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="6dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

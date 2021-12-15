@@ -23,7 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.home.complex_fare" />
+        <activity android:name=".ui.home.complex_fare"
+            android:label="Payment"/>
         <activity
             android:name=".ui.home.ComplexDesc"
             android:parentActivityName=".navPer" />

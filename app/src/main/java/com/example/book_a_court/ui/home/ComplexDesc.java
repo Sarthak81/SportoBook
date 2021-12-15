@@ -46,7 +46,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComplexDesc extends AppCompatActivity {
-    String complex_name,complex_uid,sport_name;
+    String complex_name,complex_uid,sport_name,sport_price;
     TextView complex_desc_name,time1,time2;
     TextView complex_desc_rating,avail;
     RecyclerView complex_desc_recycler,priceList;
@@ -60,7 +60,7 @@ public class ComplexDesc extends AppCompatActivity {
     Button ratebtn;
     CalendarView calendarView;
     int d,m,y,hr1,hr2;
-    ArrayList<String> spinnerList;
+    ArrayList<String> spinnerList,courtPrice;
     float avgrating =0;
     int size;
     String[] spinnerArr;
@@ -91,6 +91,7 @@ public class ComplexDesc extends AppCompatActivity {
         complex_desc_recycler.setHasFixedSize(true);
         complex_desc_recycler.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
         spinnerList = new ArrayList<>();
+        courtPrice = new ArrayList<>();
 
 
         db.collection("sports").document(complex_uid).collection("court")
@@ -103,6 +104,7 @@ public class ComplexDesc extends AppCompatActivity {
                             Log.d("newestTag", "onSuccess: " + (snapshot.getString("court_name")+snapshot.get("court_price").toString()+snapshot.get("court_number").toString()));
                             sportArrayList.add(sport);
                             spinnerList.add(sport.getName());
+                            courtPrice.add(sport.getPrice());
                         }
                         size = spinnerList.size();
                         spinnerArr = new String[size];
@@ -116,6 +118,7 @@ public class ComplexDesc extends AppCompatActivity {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                 sport_name = parent.getSelectedItem().toString();
+                                sport_price = courtPrice.get(position);
                             }
 
                             @Override
@@ -151,6 +154,7 @@ public class ComplexDesc extends AppCompatActivity {
                 intent.putExtra("hr1",hr1);
                 intent.putExtra("hr2",hr2);
                 intent.putExtra("sport_name",sport_name);
+                intent.putExtra("sport_price",sport_price);
                 startActivity(intent);
             }
         });
