@@ -14,9 +14,11 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.book_a_court.navCom;
 import com.example.book_a_court.ui.complexPages.GalleryFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -39,8 +41,8 @@ public class gallery_main extends AppCompatActivity {
     public static final String Database_Path = "Gallery_Image_Uploads";
 
     // Creating button.
-    Button ChooseButton, UploadButton, DisplayImageButton;
-
+    Button ChooseButton, UploadButton;
+ImageButton DisplayImageButton;
     // Creating EditText.
     EditText ImageName ;
 
@@ -77,7 +79,7 @@ public class gallery_main extends AppCompatActivity {
         ChooseButton = (Button)findViewById(R.id.ButtonChooseImage);
         UploadButton = (Button)findViewById(R.id.ButtonUploadImage);
 
-        DisplayImageButton = (Button)findViewById(R.id.DisplayImagesButton);
+        DisplayImageButton = (ImageButton) findViewById(R.id.DisplayImagesButton);
 
         // Assign ID's to EditText.
         ImageName = (EditText)findViewById(R.id.ImageNameEditText);
@@ -121,10 +123,8 @@ public class gallery_main extends AppCompatActivity {
         DisplayImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent = new Intent(gallery_main.this, GalleryFragment.class);
+                Intent intent = new Intent(getApplicationContext(), navCom.class);
                 startActivity(intent);
-
             }
         });
     }

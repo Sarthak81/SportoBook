@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
-    android:background="#C1B9B9"
+    android:background="#FFFFFF"
     tools:context=".ui.complexPages.gallery_images.gallery_main">
 
     <TextView
@@ -14,9 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="Firebase Image Upload Tutorial"
+        android:text="Add Image"
+        android:textColor="#353232"
+        android:textColorHint="#0E0E0E"
         android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:drawableTint="#0E0E0E" />
 
     <ImageView
         android:id="@+id/ShowImageView"
@@ -29,10 +31,11 @@
 
     <Button
         android:id="@+id/ButtonChooseImage"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ShowImageView"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="19dp"
         android:text="Choose Image" />
 
     <EditText
@@ -42,24 +45,29 @@
         android:layout_below="@+id/ButtonChooseImage"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:hint="Enter Image Name Here"
+        android:hint="Image Name"
         android:textColor="#231F1F"
         android:textColorHint="#1E1515" />
 
     <Button
         android:id="@+id/ButtonUploadImage"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ImageNameEditText"
-        android:layout_marginTop="20dp"
-        android:text="Upload image to Firebase Storage" />
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="22dp"
+        android:gravity="center"
+        android:text="Upload image " />
 
-    <Button
+    <ImageButton
         android:id="@+id/DisplayImagesButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ButtonUploadImage"
-        android:layout_marginTop="10dp"
-        android:text="Show All Uploaded Images" />
+        android:layout_width="54dp"
+        android:layout_height="59dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="324dp"
+        android:background="@color/white"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+        app:tint="#0E0D0D"
+        tools:ignore="VectorDrawableCompat" />
 
 </RelativeLayout>

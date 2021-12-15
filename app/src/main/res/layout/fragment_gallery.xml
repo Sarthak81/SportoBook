@@ -44,22 +44,6 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="176dp"
-        android:layout_height="55dp"
-        android:text="Gallery"
-        android:textAlignment="center"
-        android:textColor="#1C1A1A"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.451"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.01" />
-
-    <TextView
         android:id="@+id/textView8"
         android:layout_width="176dp"
         android:layout_height="55dp"
@@ -93,7 +77,7 @@
         android:id="@+id/recyclerView_video"
         android:layout_width="match_parent"
         android:layout_height="210dp"
-        android:background="#EDD6D6"
+        android:background="#8A7575"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
