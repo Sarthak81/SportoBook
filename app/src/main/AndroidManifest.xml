@@ -14,7 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BookaCourt">
-        <activity android:name=".PaymentStatus"></activity>
+        <activity
+            android:name=".PaymentStatus"
+            android:label="Payment Status"
+            android:parentActivityName=".navPer" />
         <activity
             android:name=".ui.SplashActivity"
             android:exported="true">

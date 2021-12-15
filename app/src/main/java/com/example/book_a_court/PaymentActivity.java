@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -75,11 +76,19 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
 
     @Override
     public void onPaymentSuccess(String s) {
-        Toast.makeText(this, "Successful" + s, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Successful" + s, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(),PaymentStatus.class);
+        intent.putExtra("status","Payment Successful");
+        intent.putExtra("payId",s);
+        startActivity(intent);
     }
 
     @Override
     public void onPaymentError(int i, String s) {
-        Toast.makeText(this, "Error cause by" + s, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Error cause by" + s, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(),PaymentStatus.class);
+        intent.putExtra("status","Payment Failed");
+        intent.putExtra("payId",s);
+        startActivity(intent);
     }
 }
