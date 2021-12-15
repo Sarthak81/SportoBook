@@ -14,17 +14,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BookaCourt">
+        <activity android:name=".PaymentStatus"></activity>
         <activity
             android:name=".ui.SplashActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.home.complex_fare"
-            android:label="Payment"/>
+        <activity
+            android:name=".ui.home.complex_fare"
+            android:label="Payment" />
         <activity
             android:name=".ui.home.ComplexDesc"
             android:parentActivityName=".navPer" />
@@ -51,9 +53,7 @@
         <activity
             android:name=".login"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

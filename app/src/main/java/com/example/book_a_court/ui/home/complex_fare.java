@@ -2,11 +2,14 @@ package com.example.book_a_court.ui.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.book_a_court.PaymentActivity;
 import com.example.book_a_court.R;
 
 public class complex_fare extends AppCompatActivity {
@@ -37,10 +40,20 @@ public class complex_fare extends AppCompatActivity {
         pay = findViewById(R.id.proceed_to_pay);
 
         int price = Integer.parseInt(sportPrice);
-        Toast.makeText(this, ""+price+" "+complexName+" "+sportName, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, ""+price+" "+complexName+" "+sportName, Toast.LENGTH_SHORT).show();
         complex_name.setText(complexName);
         sport_name.setText(sportName);
         fare.setText(String.valueOf((hr2-hr1)*price));
         duration.setText(String.valueOf(hr2-hr1));
+
+        pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
+                intent.putExtra("fare",(hr2-hr1)*price);
+                intent.putExtra("complex_name",complexName);
+                startActivity(intent);
+            }
+        });
     }
 }
