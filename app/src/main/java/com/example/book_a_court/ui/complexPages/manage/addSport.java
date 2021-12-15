@@ -85,8 +85,8 @@ public class addSport extends AppCompatActivity {
 
                 Map< String, Object > court_details = new HashMap<>();
                     court_details.put("court_name",name);
-                    court_details.put("court_price",court_price);
-                    court_details.put("court_number",court_no);
+                    court_details.put("court_price",String.valueOf(price));
+                    court_details.put("court_number",String.valueOf(number));
 
 
                     documentReference.set(court_details).addOnSuccessListener(new OnSuccessListener< Void >() {
