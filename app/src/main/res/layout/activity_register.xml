@@ -4,14 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
     tools:context=".register">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="421dp"
+        android:layout_height="185dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/download"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".27"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/reghead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/headland_one"
+        android:text="@string/register"
+        android:textColor="#ECE5E5"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.061" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/regconstraint"
+        android:background="@drawable/register_back"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent = ".78"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/background"
+        app:layout_constraintVertical_bias="0">
 
     <LinearLayout
         android:id="@+id/linearper"
         android:layout_width="345dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="350dp"
         android:orientation="vertical"
         android:visibility="invisible"
@@ -19,19 +57,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout2">
+        app:layout_constraintTop_toBottomOf="@id/linearLayout2" >
 
         <EditText
             android:id="@+id/perName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/register_back"
+            android:drawableStart="@drawable/ic_baseline_edit_24"
+
+            android:padding="5dp"
+            android:layout_marginVertical="@dimen/_4sdp"
             android:ems="10"
             android:hint="@string/name"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="#FDFDFD" />
 
         <EditText
             android:id="@+id/perEmail"
             android:layout_width="match_parent"
+            android:background="@drawable/register_back"
+            android:padding="5dp"
+            android:layout_marginVertical="@dimen/_4sdp"
+            android:drawableStart="@drawable/ic_baseline_email_24"
+
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/email_id"
@@ -40,6 +89,11 @@
         <EditText
             android:id="@+id/perPhone"
             android:layout_width="match_parent"
+            android:background="@drawable/register_back"
+            android:padding="5dp"
+            android:layout_marginVertical="@dimen/_4sdp"
+            android:drawableStart="@drawable/ic_baseline_phone"
+
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/mobile_no"
@@ -48,6 +102,11 @@
         <EditText
             android:id="@+id/perPass"
             android:layout_width="match_parent"
+            android:background="@drawable/register_back"
+            android:padding="5dp"
+            android:layout_marginVertical="@dimen/_4sdp"
+            android:drawableStart="@drawable/ic_baseline_lock_24"
+
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/password"
@@ -71,116 +130,146 @@
             android:id="@+id/comName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/register_back"
+            android:padding="5dp"
+            android:layout_marginVertical="@dimen/_4sdp"
+
+            android:drawableStart="@drawable/ic_baseline_edit_24"
             android:ems="10"
             android:hint="@string/sports_complex_name"
             android:inputType="textPersonName"
-            android:textColor="@color/black" />
+            android:textColor="#FBFBFB" />
 
         <EditText
             android:id="@+id/comPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/register_back"
+            android:padding="5dp"
+            android:layout_marginVertical="@dimen/_4sdp"
+
+            android:drawableStart="@drawable/ic_baseline_phone"
             android:ems="10"
             android:hint="@string/phone_no"
-            android:inputType="phone" />
+            android:inputType="phone"
+            android:textColor="#FBFBFB" />
 
         <EditText
             android:id="@+id/comEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/register_back"
+            android:padding="5dp"
+            android:layout_marginVertical="@dimen/_4sdp"
+
+            android:drawableStart="@drawable/ic_baseline_email_24"
             android:ems="10"
             android:hint="@string/email_id"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColor="#FBFBFB" />
 
         <EditText
             android:id="@+id/comAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/register_back"
+            android:padding="5dp"
+            android:layout_marginVertical="@dimen/_4sdp"
+
+            android:drawableStart="@drawable/ic_baseline_edit_24"
             android:ems="10"
             android:hint="@string/address"
-            android:inputType="textPostalAddress" />
+            android:inputType="textPostalAddress"
+            android:textColor="#FBFBFB" />
 
         <EditText
             android:id="@+id/comPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/register_back"
+            android:padding="5dp"
+            android:drawableStart="@drawable/ic_baseline_lock_24"
+            android:layout_marginVertical="@dimen/_4sdp"
+
             android:ems="10"
             android:hint="@string/password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="#FBFBFB" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/reghead"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/headland_one"
-        android:text="@string/register"
-        android:textColor="#ECE5E5"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
 
-    <Button
-        android:id="@+id/regcombtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="276dp"
-        android:fontFamily="@font/belgrano"
-        android:text="@string/register"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearper"
-        app:layout_constraintVertical_bias="0.0" />
+        <Button
+            android:id="@+id/regcombtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_70sdp"
+            android:layout_marginTop="276dp"
+            android:fontFamily="@font/belgrano"
+            android:text="@string/register"
+            app:backgroundTint="#21C1B2"
+
+            app:cornerRadius="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearper"
+            app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/regcombtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reghead"
-        app:layout_constraintVertical_bias="0.037">
+        app:layout_constraintTop_toTopOf="@id/regconstraint"
+        app:layout_constraintVertical_bias="0">
 
         <Button
             android:id="@+id/complex"
-            android:layout_width="123dp"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_marginTop="29dp"
+            android:layout_weight="1"
+            android:background="@color/white"
             android:fadingEdge="vertical"
             android:fontFamily="@font/belgrano"
-            android:text="@string/complex" />
+            android:text="@string/complex"
+            android:textColor="#000000"
+            app:backgroundTint="#FFFFFF"
+            app:cornerRadius="@dimen/_20sdp" />
 
         <Button
             android:id="@+id/person"
-            android:layout_width="123dp"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_marginTop="29dp"
+            android:layout_weight="1"
+            android:background="@color/white"
             android:fadingEdge="vertical"
             android:fontFamily="@font/belgrano"
-            android:text="@string/person" />
+            android:text="@string/person"
+            android:textColor="#000000"
+            app:backgroundTint="#FFFEFE"
+            app:cornerRadius="10dp" />
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/regperbtn"
-        android:layout_width="115dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="72dp"
-        android:text="@string/register"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearper" />
+        <Button
+            android:id="@+id/regperbtn"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="72dp"
+            android:text="@string/register"
+            android:visibility="invisible"
+            android:layout_marginHorizontal="@dimen/_70sdp"
+            app:backgroundTint="#21C1B2"
+
+            app:cornerRadius="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearper" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -194,5 +283,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/regcombtn"
         app:layout_constraintVertical_bias="0.289" />
-
+</androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
