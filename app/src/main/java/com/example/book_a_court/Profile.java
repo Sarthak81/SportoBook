@@ -215,26 +215,6 @@ public class Profile extends AppCompatActivity {
 
     }
 
-//    private void mail_edit_kardo_bro() {
-//        String email_edited = editEmail.getText().toString().trim();
-//        Map<String,Object> edMail = new HashMap<>();
-//        edMail.put("fname",email_edited);
-//        documentReference.update(edMail).addOnSuccessListener(new OnSuccessListener<Void>() {
-//            @Override
-//            public void onSuccess(Void aVoid) {
-//                Toast.makeText(Profile.this, "Email Successfully Changed", Toast.LENGTH_SHORT).show();
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(Profile.this, "Email Change Failed", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-//    }
-
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

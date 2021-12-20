@@ -42,7 +42,7 @@ public class gallery_main extends AppCompatActivity {
 
     // Creating button.
     Button ChooseButton, UploadButton;
-ImageButton DisplayImageButton;
+    ImageButton DisplayImageButton;
     // Creating EditText.
     EditText ImageName ;
 

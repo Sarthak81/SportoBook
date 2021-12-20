@@ -52,6 +52,13 @@ public class complex_fare extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
                 intent.putExtra("fare",(hr2-hr1)*price);
                 intent.putExtra("complex_name",complexName);
+                intent.putExtra("uid",uid);
+                intent.putExtra("day",d);
+                intent.putExtra("month",m);
+                intent.putExtra("year",y);
+                intent.putExtra("hr1",hr1);
+                intent.putExtra("hr2",hr2);
+                intent.putExtra("sport_name",sportName);
                 startActivity(intent);
             }
         });
