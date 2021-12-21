@@ -103,7 +103,7 @@ public class ComplexListAdapter extends RecyclerView.Adapter<ComplexListAdapter.
                  //   ArrayList<complexUsers> filteredList = new ArrayList<>();
                     for (complexUsers complexUsers : complexList) {
                         if (complexUsers.getName().toLowerCase().contains(charSequenceString.toLowerCase())) {
-                            Toast.makeText(contextHere, ""+complexUsers.getEmail(), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(contextHere, ""+complexUsers.getEmail(), Toast.LENGTH_SHORT).show();
                             filteredList.add(complexUsers);
                             //Toast.makeText(contextHere, "ncfsndfn"+complexList.get(0).getName(), Toast.LENGTH_SHORT).show();
                         }
