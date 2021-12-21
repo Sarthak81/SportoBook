@@ -1,9 +1,13 @@
 package com.example.book_a_court;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -78,18 +82,19 @@ public class register extends AppCompatActivity {
 
         linearPer.setVisibility(View.INVISIBLE);
         regPerBtn.setVisibility(View.INVISIBLE);
-        Complex.setBackgroundColor(android.R.color.transparent);
-        Person.setBackgroundColor(Color.parseColor("#3700B3"));
+//        Complex.setBackgroundColor(android.R.color.transparent);
+        Person.setBackgroundColor(android.R.color.transparent);
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
         progressBar = findViewById(R.id.progressBar);
 
         Complex.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("ResourceAsColor")
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @SuppressLint({"ResourceAsColor", "UseCompatLoadingForDrawables"})
             @Override
             public void onClick(View v) {
-                Complex.setBackgroundColor(android.R.color.transparent);
-                Person.setBackgroundColor(Color.parseColor("#3700B3"));
+                Complex.setBackground(getResources().getDrawable(R.drawable.item_button_back));
+                Person.setBackgroundColor(android.R.color.transparent);
                 regPerBtn.setVisibility(View.INVISIBLE);
                 linearPer.setVisibility(View.INVISIBLE);
                 linearCom.setVisibility(View.VISIBLE);
@@ -97,11 +102,12 @@ public class register extends AppCompatActivity {
             }
         });
         Person.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
-                Person.setBackgroundColor(android.R.color.transparent);
-                Complex.setBackgroundColor(Color.parseColor("#3700B3"));
+                Person.setBackground(getResources().getDrawable(R.drawable.item_button_back));
+                Complex.setBackgroundColor(android.R.color.transparent);
                 regComBtn.setVisibility(View.INVISIBLE);
                 linearCom.setVisibility(View.INVISIBLE);
                 linearPer.setVisibility(View.VISIBLE);

@@ -14,7 +14,10 @@
         android:scaleType="centerCrop"
         android:src="@drawable/download"
         app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".27"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -245,7 +248,7 @@
                     android:fontFamily="@font/belgrano"
                     android:text="@string/complex"
                     android:textColor="#000000"
-                    app:backgroundTint="#FFFFFF" />
+                    android:background="@drawable/item_button_back"/>
 
                 <Button
                     android:id="@+id/person"
@@ -256,7 +259,7 @@
                     android:fontFamily="@font/belgrano"
                     android:text="@string/person"
                     android:textColor="#000000"
-                    app:backgroundTint="#FFFEFE" />
+                    android:background="@drawable/item_button_back"/>
 
             </LinearLayout>
 
