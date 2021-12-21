@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -56,6 +57,7 @@ public class HomeFragment extends Fragment {
     Spinner ratingDropdown;
     String[] sortArr;
     ArrayAdapter<String> adapter;
+    SearchView searchView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -67,8 +69,8 @@ public class HomeFragment extends Fragment {
         fStore = FirebaseFirestore.getInstance();
         database = FirebaseDatabase.getInstance();
 
-        search = root.findViewById(R.id.Search);
-        searchbtn = root.findViewById(R.id.searchbtn);
+        searchView = root.findViewById(R.id.Search);
+       // searchbtn = root.findViewById(R.id.searchbtn);
         ratingDropdown = root.findViewById(R.id.spinnerRating);
         sortArr = new String[]{"--Select--", "Rating", "Distance"};
         adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_dropdown_item,sortArr);
@@ -180,55 +182,75 @@ public class HomeFragment extends Fragment {
 //                    }
 //                });
 
-        searchbtn.setOnClickListener(new View.OnClickListener() {
+//        searchbtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String s = search.getText().toString();
+//                complexes.clear();
+//                fStore.collection("users")
+//                        .get()
+//                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                                if (task.isSuccessful()) {
+//                                    for (QueryDocumentSnapshot document : task.getResult()) {
+//                                        if(document.getString("IsAdmin") != null && document.getString("fName").equals(s)) {
+//                                            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+//                                            DatabaseReference mRatingBarCh = rootRef.child("ratings").child(document.getId());
+//
+//                                            mRatingBarCh.addValueEventListener(new ValueEventListener() {
+//                                                @Override
+//                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                                    float total=0,num=0;
+//                                                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+//                                                        total = total+Float.parseFloat(postSnapshot.getValue().toString());
+//                                                        num++;
+//                                                    }
+//                                                    float avgrating= total/num;
+//                                                    complexUsers user = new complexUsers(document.getId(), document.getString("fName"),
+//                                                            document.getString("email"), document.getString("phone"),document.getString("url"),avgrating);
+//                                                    complexes.add(user);
+//                                                    complexListAdapter.notifyDataSetChanged();
+//                                                }
+//
+//                                                @Override
+//                                                public void onCancelled(@NonNull DatabaseError error) {
+//
+//                                                }
+//                                            });
+//                                            Log.d("Mytag", document.getId() + " => " + document.getId() + document.getString("fName") + document.getString("email") + document.getString("phone"));
+//
+////                                      Log.d("user", "onComplete: "+user.getName());
+//                                        }
+//                                    }
+//
+//                                } else {
+//                                    Log.d("TAG", "Error getting documents: ", task.getException());
+//                                }
+//                            }
+//                        });
+//            }
+//        });
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onClick(View v) {
-                String s = search.getText().toString();
-                complexes.clear();
-                fStore.collection("users")
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        if(document.getString("IsAdmin") != null && document.getString("fName").equals(s)) {
-                                            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-                                            DatabaseReference mRatingBarCh = rootRef.child("ratings").child(document.getId());
+            public boolean onQueryTextSubmit(String queryString) {
+                complexListAdapter.getFilter().filter(queryString);
+                return false;
+            }
 
-                                            mRatingBarCh.addValueEventListener(new ValueEventListener() {
-                                                @Override
-                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                    float total=0,num=0;
-                                                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                                                        total = total+Float.parseFloat(postSnapshot.getValue().toString());
-                                                        num++;
-                                                    }
-                                                    float avgrating= total/num;
-                                                    complexUsers user = new complexUsers(document.getId(), document.getString("fName"),
-                                                            document.getString("email"), document.getString("phone"),document.getString("url"),avgrating);
-                                                    complexes.add(user);
-                                                    complexListAdapter.notifyDataSetChanged();
-                                                }
-
-                                                @Override
-                                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                                }
-                                            });
-                                            Log.d("Mytag", document.getId() + " => " + document.getId() + document.getString("fName") + document.getString("email") + document.getString("phone"));
-
-//                                      Log.d("user", "onComplete: "+user.getName());
-                                        }
-                                    }
-
-                                } else {
-                                    Log.d("TAG", "Error getting documents: ", task.getException());
-                                }
-                            }
-                        });
+            @Override
+            public boolean onQueryTextChange(String queryString) {
+                complexListAdapter.getFilter().filter(queryString);
+                return false;
             }
         });
+
+
+
+
+
 
         complexList = root.findViewById(R.id.complexList);
         complexList.setLayoutManager(new LinearLayoutManager(getContext()));

@@ -19,13 +19,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Search" />
 
-    <EditText
+    <SearchView
         android:id="@+id/Search"
-        android:layout_width="297dp"
+        android:layout_width="match_parent"
         android:layout_height="51dp"
         android:background="@color/white"
         android:drawableLeft="@android:drawable/ic_menu_search"
         android:ems="10"
+        android:layout_marginHorizontal="@dimen/_30sdp"
         android:hint="Search courts"
         android:inputType="textPersonName"
         android:textColorHint="#0B0A0A"
@@ -50,19 +51,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlCompat" />
-
-    <ImageButton
-        android:id="@+id/searchbtn"
-        android:layout_width="54dp"
-        android:layout_height="56dp"
-        android:layout_marginBottom="88dp"
-        android:src="@android:drawable/ic_menu_search"
-        app:layout_constraintBottom_toTopOf="@+id/complexList"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/Search"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.053" />
 
     <LinearLayout
         android:layout_width="wrap_content"
