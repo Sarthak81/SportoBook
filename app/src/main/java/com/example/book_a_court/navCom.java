@@ -59,10 +59,7 @@ public class navCom extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -76,6 +73,14 @@ public class navCom extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_complex);
         return NavigationUI.navigateUp(navController, mAppBarConfigurationCom)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onActivityResult (int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            fragment.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
 
