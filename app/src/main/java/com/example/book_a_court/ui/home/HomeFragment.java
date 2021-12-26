@@ -89,6 +89,7 @@ public class HomeFragment extends Fragment {
                                             if(document.getString("IsAdmin") != null) {
                                                 DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
                                                 DatabaseReference mRatingBarCh = rootRef.child("ratings").child(document.getId());
+                                                complexes.clear();
 
                                                 mRatingBarCh.addValueEventListener(new ValueEventListener() {
                                                     @Override
@@ -135,7 +136,48 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                fStore.collection("users")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        if(document.getString("IsAdmin") != null) {
+                                            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+                                            DatabaseReference mRatingBarCh = rootRef.child("ratings").child(document.getId());
+                                            complexes.clear();
+                                            mRatingBarCh.addValueEventListener(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    float total=0,num=0;
+                                                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                                                        total = total+Float.parseFloat(postSnapshot.getValue().toString());
+                                                        num++;
+                                                    }
+                                                    float avgrating= total/num;
+                                                    complexUsers user = new complexUsers(document.getId(), document.getString("fName"),
+                                                            document.getString("email"), document.getString("phone"),document.getString("url"),avgrating);
+                                                    complexes.add(user);
+                                                    complexListAdapter.notifyDataSetChanged();
+                                                }
 
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            Log.d("Mytag", document.getId() + " => " + document.getId() + document.getString("fName") + document.getString("email") + document.getString("phone"));
+
+//                                      Log.d("user", "onComplete: "+user.getName());
+                                        }
+                                    }
+
+                                } else {
+                                    Log.d("TAG", "Error getting documents: ", task.getException());
+                                }
+                            }
+                        });
             }
         });
 

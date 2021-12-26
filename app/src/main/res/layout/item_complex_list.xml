@@ -13,20 +13,27 @@
         android:layout_width="0dp"
         android:layout_height="241dp"
         android:padding="@dimen/_20sdp"
-        app:cardCornerRadius="@dimen/_20sdp"
         app:cardElevation="10dp"
+        android:background="@drawable/register_back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/card_pic"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_138sdp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/white_bacl" />
+
         <TextView
             android:id="@+id/complex_name"
             android:layout_width="match_parent"
             android:layout_height="68dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="180dp"
             android:layout_marginRight="5dp"
             android:fontFamily="@font/allerta"
             android:padding="@dimen/_5sdp"

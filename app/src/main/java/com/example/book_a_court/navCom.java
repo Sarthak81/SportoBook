@@ -43,16 +43,8 @@ public class navCom extends AppCompatActivity {
         setContentView(R.layout.activity_nav_com);
         Toolbar toolbar = findViewById(R.id.toolbarCom);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
         auth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         DrawerLayout drawer = findViewById(R.id.drawer_layout_com);
         NavigationView navigationView = findViewById(R.id.nav_view_com);
         updateHeader();
