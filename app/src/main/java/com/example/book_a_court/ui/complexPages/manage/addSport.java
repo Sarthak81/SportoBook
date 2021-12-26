@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.book_a_court.Profile;
 import com.example.book_a_court.R;
 import com.example.book_a_court.navCom;
 import com.google.android.gms.tasks.OnFailureListener;

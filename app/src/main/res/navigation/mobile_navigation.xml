@@ -15,7 +15,7 @@
         android:id="@+id/nav_profile"
         android:name="com.example.book_a_court.ui.profile.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/activity_profile" />
 
     <fragment
         android:id="@+id/nav_userHistory"

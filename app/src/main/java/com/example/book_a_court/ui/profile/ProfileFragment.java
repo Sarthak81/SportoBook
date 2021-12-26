@@ -20,14 +20,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.example.book_a_court.MainActivity;
-import com.example.book_a_court.Profile;
 import com.example.book_a_court.R;
-import com.example.book_a_court.navCom;
 import com.example.book_a_court.navPer;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
