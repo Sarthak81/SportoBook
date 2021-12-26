@@ -58,7 +58,7 @@ import java.util.Objects;
 public class ProfileComFragment extends Fragment {
 
     Button logout, save;
-    ImageView image, bbtn;
+    ImageView image;
     Uri imageUri, getImageUri;
     UploadTask uploadTask;
     StorageReference storageReference;
@@ -93,7 +93,6 @@ public class ProfileComFragment extends Fragment {
         editPerName = (EditText) root.findViewById(R.id.editPerName);
 //        editPerEmail = findViewById(R.id.editPerEmail);
         editPerPhone = (EditText)root.findViewById(R.id.editPerPhone);
-        bbtn = (ImageView) root.findViewById(R.id.userProfBack);
         //textEmail.setText("hello");
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -115,36 +114,7 @@ public class ProfileComFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        bbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DocumentReference df = fStore.collection("users").document(Objects.requireNonNull(currentUserId));
-                df.get().addOnSuccessListener(new OnSuccessListener< DocumentSnapshot >() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if (documentSnapshot.getString("IsAdmin") != null) {
-                            Intent intent = new Intent(getContext(), navCom.class);
-                            startActivity(intent);
-                        } else {
-                            Intent intent = new Intent(getContext(), navPer.class);
-                            startActivity(intent);
-                        }
-                    }
-                });
-            }
-        });
 
-//        editEmail.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                textEmail.setVisibility(View.GONE);
-//                editEmail.setVisibility(View.VISIBLE);
-//                mail_edit_kardo_bro();
-//                editEmail.setVisibility(View.GONE);
-//                textEmail.setVisibility(View.VISIBLE);
-//
-//            }
-//        });
         editName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,12 +170,6 @@ public class ProfileComFragment extends Fragment {
             }
         });
 
-//        GoogleSignInAccount signInAccount= GoogleSignIn.getLastSignedInAccount(this);
-//        if(signInAccount!=null){
-//            name.setText(signInAccount.getDisplayName())
-
-
-//        }
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -216,9 +180,6 @@ public class ProfileComFragment extends Fragment {
             }
 
         });
-
-
-
         return root;
     }
 
@@ -259,10 +220,6 @@ public class ProfileComFragment extends Fragment {
             final StorageReference reference = storageReference.child(System.currentTimeMillis() + "." + getFileExt(imageUri));
             uploadTask = reference.putFile(imageUri);
 
-            //userID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
-            //DocumentReference documentReference = db.collection("users").document(userID);
-
-
             Task< Uri > urlTask = uploadTask.continueWithTask(new Continuation< UploadTask.TaskSnapshot, Task< Uri > >() {
                 @Override
                 public Task< Uri > then(@NonNull Task< UploadTask.TaskSnapshot > task) throws Exception {
@@ -270,14 +227,6 @@ public class ProfileComFragment extends Fragment {
                     if (!task.isSuccessful()) {
                         throw Objects.requireNonNull(task.getException());
                     } else {
-//                       uploadTask.addOnProgressListener(new OnProgressListener< UploadTask.TaskSnapshot >() {
-//                           @Override
-//                           public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-//                               double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-//                              pd.setMessage("Uploaded "+progress+"%");
-//                           }
-//                       });
-
                         return reference.getDownloadUrl();
 
                     }
@@ -350,18 +299,7 @@ public class ProfileComFragment extends Fragment {
                     Glide.with(getContext()).load((Objects.requireNonNull(snapshot.get("url"))).toString()).into(image);
 
             }
-
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
         });
-
 
     }
 
@@ -419,9 +357,6 @@ public class ProfileComFragment extends Fragment {
             Toast.makeText(getContext(), "Please Enter Valid Name", Toast.LENGTH_SHORT).show();
             textName.setText(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getDisplayName());
         }
-
-
-        // View root = inflater.inflate(R.layout.activity_profile, container, false);
 
     }
 

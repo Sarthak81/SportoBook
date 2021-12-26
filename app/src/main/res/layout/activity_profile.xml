@@ -41,10 +41,10 @@
         android:id="@+id/textPhone"
         android:layout_width="262dp"
         android:layout_height="43dp"
-        android:gravity="center_vertical"
-        android:text="Phone"
-        android:padding="@dimen/_5sdp"
         android:drawablePadding="@dimen/_5sdp"
+        android:gravity="center_vertical"
+        android:padding="@dimen/_5sdp"
+        android:text="Phone"
         android:textColor="#000000"
         android:textSize="18sp"
         app:drawableLeftCompat="@android:drawable/ic_menu_call"
@@ -120,6 +120,7 @@
         android:id="@+id/logout"
         android:layout_width="94dp"
         android:layout_height="44dp"
+        android:gravity="center"
         android:text="logout"
         android:textColor="#3F51B5"
         android:textSize="12sp"
@@ -127,22 +128,23 @@
         app:iconTint="#1C1212"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.963"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.887" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/pp"
         android:layout_width="162dp"
         android:layout_height="162dp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:src="@drawable/chatprofile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.18"
-        android:src="@drawable/chatprofile" />
+        app:layout_constraintVertical_bias="0.131" />
 
     <Button
         android:id="@+id/ppedit"
@@ -189,10 +191,10 @@
         android:layout_width="262dp"
         android:layout_height="43dp"
         android:drawableLeft="@android:drawable/ic_menu_edit"
-        android:text="Name"
+        android:drawablePadding="@dimen/_5sdp"
         android:gravity="center_vertical"
         android:padding="@dimen/_5sdp"
-        android:drawablePadding="@dimen/_5sdp"
+        android:text="Name"
         android:textColor="#040404"
         android:textSize="18sp"
         app:drawableTint="#F44336"
@@ -234,35 +236,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.54" />
-
-
-    <ImageView
-        android:id="@+id/userProfBack"
-        android:layout_width="40dp"
-        android:layout_height="36dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.032"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.029"
-        app:srcCompat="?attr/homeAsUpIndicator"
-        app:tint="#3A3232" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="151dp"
-        android:layout_height="38dp"
-        android:text="PROFILE"
-        android:textAlignment="center"
-        android:textColor="#503737"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/logout"
-        app:layout_constraintHorizontal_bias="0.932"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.041" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

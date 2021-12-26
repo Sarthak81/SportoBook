@@ -1,7 +1,9 @@
 package com.example.book_a_court.ui.chat;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,11 +38,23 @@ public class ChatUserAdapter extends RecyclerView.Adapter<ChatUserAdapter.ViewHo
         return new ViewHolder(view);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Users user = userNames.get(position);
 //        Log.d("chatTag", "onBindViewHolder: "+user.getName());
         holder.user_name.setText(user.getName());
+        int nightModeFlags = contextHere.getResources().getConfiguration().uiMode &
+                Configuration.UI_MODE_NIGHT_MASK;
+        switch (nightModeFlags) {
+            case Configuration.UI_MODE_NIGHT_YES:
+                holder.user_name.setTextColor(R.color.black);
+                break;
+
+            case Configuration.UI_MODE_NIGHT_NO:
+                holder.user_name.setTextColor(R.color.white);
+                break;
+        }
         if(user.uri!=null){
             Picasso.get().load(user.getUri()).into(holder.circleImageView);
         }

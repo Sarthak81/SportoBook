@@ -91,7 +91,6 @@ public class ProfileFragment extends Fragment {
         editPerName = (EditText) root.findViewById(R.id.editPerName);
 //        editPerEmail = findViewById(R.id.editPerEmail);
         editPerPhone = (EditText)root.findViewById(R.id.editPerPhone);
-        bbtn = (ImageView) root.findViewById(R.id.userProfBack);
         //textEmail.setText("hello");
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -113,36 +112,7 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        bbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DocumentReference df = fStore.collection("users").document(Objects.requireNonNull(currentUserId));
-                df.get().addOnSuccessListener(new OnSuccessListener< DocumentSnapshot >() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if (documentSnapshot.getString("IsAdmin") != null) {
-                            Intent intent = new Intent(getContext(), navCom.class);
-                            startActivity(intent);
-                        } else {
-                            Intent intent = new Intent(getContext(), navPer.class);
-                            startActivity(intent);
-                        }
-                    }
-                });
-            }
-        });
 
-//        editEmail.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                textEmail.setVisibility(View.GONE);
-//                editEmail.setVisibility(View.VISIBLE);
-//                mail_edit_kardo_bro();
-//                editEmail.setVisibility(View.GONE);
-//                textEmail.setVisibility(View.VISIBLE);
-//
-//            }
-//        });
         editName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

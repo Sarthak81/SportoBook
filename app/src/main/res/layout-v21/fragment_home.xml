@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="@dimen/_3sdp"
-            android:text="Sort by : "
+            android:text="@string/sort_by"
             android:textColor="@color/black"
             android:textSize="@dimen/_15sdp" />
 
@@ -77,6 +77,7 @@
             android:layout_weight="1"
             android:padding="@dimen/_3sdp"
             android:spinnerMode="dropdown"
+            android:layout_marginRight="@dimen/_5sdp"
             android:popupTheme="@style/Theme.BookaCourt.PopupOverlay"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
