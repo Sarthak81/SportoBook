@@ -48,7 +48,7 @@ import java.util.List;
 public class ComplexDesc extends AppCompatActivity {
     String complex_name,complex_uid,sport_name,sport_price;
     TextView complex_desc_name,time1,time2;
-    TextView complex_desc_rating,avail;
+    TextView complex_desc_rating,avail,com_vid;
     RecyclerView complex_desc_recycler,priceList;
     RatingBar ratingStars;
     FirebaseFirestore db;
@@ -75,7 +75,7 @@ public class ComplexDesc extends AppCompatActivity {
         List< ImageUploadInfo > list = new ArrayList<>();
         complex_name = getIntent().getStringExtra("cName");
         complex_uid = getIntent().getStringExtra("uid");
-
+com_vid= findViewById(R.id.textView15);
         complex_desc_name = findViewById(R.id.complex_desc_name);
         complex_desc_rating = findViewById(R.id.complex_desc_rating);
         complex_desc_recycler = findViewById(R.id.complex_desc_recycler);
@@ -158,7 +158,14 @@ public class ComplexDesc extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        com_vid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),CompDescVid.class);
+                intent.putExtra("uid",complex_uid);
+                startActivity(intent);
+            }
+        });
         //fetching availability
 //        db.collection("bookings").document(complex_uid).collection(String.valueOf(d+'/'+m+'/'+y))
 //                .get()

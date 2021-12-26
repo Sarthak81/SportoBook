@@ -60,11 +60,21 @@
 
             <TextView
                 android:id="@+id/textView13"
-                android:layout_width="match_parent"
+                android:layout_width="115dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:padding="@dimen/_8sdp"
                 android:text="@string/about_us"
+                android:textColor="#221F1F"
+                android:textSize="@dimen/_15sdp" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:padding="@dimen/_8sdp"
+                android:text="videos"
                 android:textColor="#221F1F"
                 android:textSize="@dimen/_15sdp" />
 
@@ -243,6 +253,12 @@
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/_12sdp"
                 app:backgroundTint="#00838F" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/avatars" />
 
         </LinearLayout>
     </ScrollView>
