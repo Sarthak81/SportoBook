@@ -42,4 +42,6 @@
     <string name="about_us">About Us</string>
     <string name="search_courts">Search courts</string>
     <string name="sort_by">Sort by :</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="new_user_register_here">New User? Register here</string>
 </resources>

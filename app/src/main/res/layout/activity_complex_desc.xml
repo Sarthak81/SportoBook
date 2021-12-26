@@ -58,23 +58,19 @@
                     android:textSize="@dimen/_28sdp" />
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#c0c0c0"
+                android:padding="@dimen/_10sdp"
+                android:layout_gravity="bottom"/>
+
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="115dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
                 android:padding="@dimen/_8sdp"
                 android:text="@string/about_us"
-                android:textColor="#221F1F"
-                android:textSize="@dimen/_15sdp" />
-
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:padding="@dimen/_8sdp"
-                android:text="videos"
                 android:textColor="#221F1F"
                 android:textSize="@dimen/_15sdp" />
 
@@ -87,11 +83,34 @@
                 android:textColor="#2C2929"
                 android:textSize="@dimen/_12sdp" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#c0c0c0"
+                android:padding="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"/>
+
+            <TextView
+                android:id="@+id/see_videos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_3sdp"
+                android:text="See Videos >>"
+                android:textColor="#221F1F"
+                android:textSize="@dimen/_15sdp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#c0c0c0"
+                android:padding="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"/>
+
             <TextView
                 android:id="@+id/textView12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_6sdp"
                 android:padding="@dimen/_8sdp"
                 android:text="Court Prices (hourly)"
                 android:textColor="#221F1F"
@@ -111,8 +130,6 @@
                 android:textColor="#2C2929"
                 android:textSize="@dimen/_13sdp" />
 
-
-
             <RatingBar
                 android:id="@+id/ratingBar2"
                 android:layout_width="250dp"
@@ -128,14 +145,21 @@
                 android:layout_height="wrap_content"
                 android:text="Rate Us" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#c0c0c0"
+                android:padding="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"/>
+
             <TextView
                 android:id="@+id/textView14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_5sdp"
-                android:text="Check availability"
+                android:text="Book Now"
                 android:textColor="#2C2929"
-                android:textSize="@dimen/_13sdp" />
+                android:textSize="@dimen/_15sdp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -148,6 +172,7 @@
                     android:layout_marginRight="@dimen/_2sdp"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_8sdp"
+                    android:textColor="@color/colorNavLightBlack"
                     android:text="Select Sport : "
                     android:textSize="@dimen/_12sdp"/>
 
@@ -166,6 +191,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_8sdp"
                 android:text="Select date"
+                android:textColor="@color/colorNavLightBlack"
                 android:textSize="@dimen/_12sdp" />
 
             <CalendarView
@@ -174,16 +200,8 @@
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/_8sdp"
                 android:padding="@dimen/_2sdp"
-                android:layout_height="wrap_content" />
-
-<!--            <TimePicker-->
-<!--                android:id="@+id/simpleTimePicker"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="150dp"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_margin="@dimen/_2sdp"-->
-<!--                android:background="#FFFFFF"-->
-<!--                android:timePickerMode="spinner" />-->
+                android:layout_height="wrap_content"
+                android:theme="@style/Widget.CalendarView.Custom"/>
 
             <TextView
                 android:id="@+id/textView17"
@@ -191,6 +209,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_8sdp"
                 android:text="Select time(in 24 hr format)"
+                android:textColor="@color/colorNavLightBlack"
                 android:textSize="@dimen/_12sdp" />
 
             <LinearLayout
@@ -218,6 +237,7 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:padding="@dimen/_5sdp"
                     android:text="to"
+                    android:textColor="@color/colorNavLightBlack"
                     android:textSize="@dimen/_11sdp" />
 
                 <EditText
@@ -230,15 +250,6 @@
                     android:layout_margin="@dimen/_2sdp"
                     android:inputType="time" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/avail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Available"
-                android:layout_margin="@dimen/_5sdp"
-                android:textColor="#2E7D32" />
 
             <Button
                 android:id="@+id/bookbtn"
@@ -253,12 +264,6 @@
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/_12sdp"
                 app:backgroundTint="#00838F" />
-
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars" />
 
         </LinearLayout>
     </ScrollView>

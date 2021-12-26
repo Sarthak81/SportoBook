@@ -34,7 +34,7 @@ import java.util.List;
 public class GalleryFragment extends Fragment {
 
     DatabaseReference databaseReference,databaseReference_vid;
- Button add_vid,add_img;
+    Button add_vid,add_img;
     // Creating RecyclerView.
     RecyclerView recyclerView,recyclerView_vid;
 
@@ -58,7 +58,7 @@ public class GalleryFragment extends Fragment {
 //        //final TextView textView = root.findViewById(R.id.text_gallery);
         recyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
         recyclerView_vid=(RecyclerView) root.findViewById(R.id.recyclerView_video);
-add_vid=root.findViewById(R.id.video_add);
+        add_vid=root.findViewById(R.id.video_add);
         add_img=root.findViewById(R.id.image_add);
 
         // Setting RecyclerView size true.
@@ -69,13 +69,11 @@ add_vid=root.findViewById(R.id.video_add);
         // Setting RecyclerView layout as LinearLayout.
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView_vid.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        //LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
         // Assign activity this to progress dialog.
         progressDialog = new ProgressDialog(getContext());
 
         // Setting up message in Progress dialog.
-
-
         // Showing progress dialog.
         add_vid.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,12 +89,12 @@ add_vid=root.findViewById(R.id.video_add);
                 startActivity(intent);
             }
         });
-String l_uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String l_uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         // Setting up Firebase image upload folder path in databaseReference.
         // The path is already defined in gallery_main.
         databaseReference = FirebaseDatabase.getInstance().getReference(gallery_main.Database_Path).child(l_uid);
 
- databaseReference_vid=FirebaseDatabase.getInstance().getReference("Videos").child(l_uid);
+        databaseReference_vid=FirebaseDatabase.getInstance().getReference("Videos").child(l_uid);
         // Adding Add Value Event Listener to databaseReference.
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -156,18 +154,11 @@ String l_uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
                 // Hiding the progress dialog.
                 progressDialog.dismiss();
 
             }
-
         });
-
-
-
-
-
         return root;
     }
 }

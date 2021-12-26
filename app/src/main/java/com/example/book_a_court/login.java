@@ -3,6 +3,7 @@ package com.example.book_a_court;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,8 +11,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -47,7 +50,8 @@ import java.util.Objects;
 public class login extends AppCompatActivity {
     EditText mEmail, mPassword;
     CardView mLoginBtn;
-    Button forgotTextLink, complex, person, googleSign, googleOut;
+    Button forgotTextLink, complex, person;
+    ImageButton googleSign;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
     FirebaseFirestore fStore;
@@ -96,7 +100,6 @@ public class login extends AppCompatActivity {
         mEmail = findViewById(R.id.loginMail);
         mPassword = findViewById(R.id.loginPass);
         googleSign = findViewById(R.id.googleSign);
-//       googleOut = findViewById(R.id.googleOut);
         mLoginBtn = findViewById(R.id.cardView);
         complex = findViewById(R.id.complex);
         person = findViewById(R.id.person);
@@ -136,7 +139,13 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(View.VISIBLE);
+                View view = getCurrentFocus();
+                if (view != null) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
                 signIn();
+
             }
         });
 
@@ -168,7 +177,7 @@ public class login extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task< AuthResult > task) {
                             if (task.isSuccessful()) {
-                                //Toast.makeText(login.this, "Complex Logged in Successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(login.this, "Complex Logged in Successfully", Toast.LENGTH_SHORT).show();
                                 checkAccessLevel(Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getUser()).getUid());
 
                                 //startActivity(new Intent(getApplicationContext(),MainActivity.class));
@@ -179,7 +188,6 @@ public class login extends AppCompatActivity {
 
                         }
                     });
-//                    Toast.makeText(login.this, "Complex Logged in", Toast.LENGTH_SHORT).show();
                 } else if (activeUser == 1) {       // for person authentication
                     fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener< AuthResult >() {
                         @Override
@@ -239,8 +247,6 @@ public class login extends AppCompatActivity {
 
             }
         });
-
-
     }
 
 
@@ -403,9 +409,6 @@ public class login extends AppCompatActivity {
 
                             } else {
                                 checkAccessLevel(userID);
-                                // Toast.makeText(getApplicationContext(), "email already exist", Toast.LENGTH_LONG).show();
-//                               Intent intent =new Intent(getApplicationContext(),MainActivity.class);
-//                               startActivity(intent);
                             }
                         }
                     }

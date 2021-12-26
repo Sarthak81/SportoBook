@@ -48,7 +48,7 @@ import java.util.List;
 public class ComplexDesc extends AppCompatActivity {
     String complex_name,complex_uid,sport_name,sport_price;
     TextView complex_desc_name,time1,time2;
-    TextView complex_desc_rating,avail,com_vid;
+    TextView complex_desc_rating,com_vid;
     RecyclerView complex_desc_recycler,priceList;
     RatingBar ratingStars;
     FirebaseFirestore db;
@@ -75,11 +75,10 @@ public class ComplexDesc extends AppCompatActivity {
         List< ImageUploadInfo > list = new ArrayList<>();
         complex_name = getIntent().getStringExtra("cName");
         complex_uid = getIntent().getStringExtra("uid");
-com_vid= findViewById(R.id.textView15);
+        com_vid= findViewById(R.id.see_videos);
         complex_desc_name = findViewById(R.id.complex_desc_name);
         complex_desc_rating = findViewById(R.id.complex_desc_rating);
         complex_desc_recycler = findViewById(R.id.complex_desc_recycler);
-        avail = findViewById(R.id.avail);
         time1 = findViewById(R.id.time1);
         time2 = findViewById(R.id.time2);
         priceList = findViewById(R.id.price_list);
@@ -92,7 +91,6 @@ com_vid= findViewById(R.id.textView15);
         complex_desc_recycler.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
         spinnerList = new ArrayList<>();
         courtPrice = new ArrayList<>();
-
 
         db.collection("sports").document(complex_uid).collection("court")
                 .get()
@@ -158,6 +156,7 @@ com_vid= findViewById(R.id.textView15);
                 startActivity(intent);
             }
         });
+
         com_vid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,36 +165,6 @@ com_vid= findViewById(R.id.textView15);
                 startActivity(intent);
             }
         });
-        //fetching availability
-//        db.collection("bookings").document(complex_uid).collection(String.valueOf(d+'/'+m+'/'+y))
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if(task.isSuccessful()){
-//                            boolean flag=true;
-//                            for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
-//                                if(documentSnapshot.get("day").toString()==String.valueOf(time.getD()) &&
-//                                        documentSnapshot.get("month").toString()==String.valueOf(time.getM()) &&
-//                                        documentSnapshot.get("year").toString()==String.valueOf(time.getD()) ){
-//                                    int tmp1 = Integer.parseInt(documentSnapshot.get("hr1").toString());
-//                                    int tmp2 = Integer.parseInt(documentSnapshot.get("hr2").toString());
-//                                    if((tmp1>=hr1 && tmp1<hr2) || (tmp2>hr1 && tmp2<=hr2)){
-//                                        avail.setText("Unavailable");
-//                                        avail.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
-//                                        flag = false;
-//                                        break;
-//                                    }
-//                                }
-//                            }
-//                            if(flag){
-//                                avail.setText("Available");
-//                                avail.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
-//                            }
-//                        }
-//                    }
-//                });
-
 
         complex_desc_name.setText(complex_name);
         ratingStars = findViewById(R.id.ratingBar2);
@@ -219,6 +188,7 @@ com_vid= findViewById(R.id.textView15);
 
             }
         });
+
         ratingStars.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
@@ -279,16 +249,6 @@ com_vid= findViewById(R.id.textView15);
 
             }
         });
-
-
-
-
-
-
-
-
-
-
 
         priceList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         priceListAdapter = new PriceListAdapter(getApplicationContext(), sportArrayList);
