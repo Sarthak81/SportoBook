@@ -1,5 +1,6 @@
 package com.example.book_a_court;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -66,6 +68,11 @@ public class navCom extends AppCompatActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.nav_com, menu);
@@ -78,6 +85,7 @@ public class navCom extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfigurationCom)
                 || super.onSupportNavigateUp();
     }
+
 
     public void updateHeader(){
         NavigationView navigationView = findViewById(R.id.nav_view_com);
