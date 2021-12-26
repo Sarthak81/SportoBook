@@ -62,6 +62,7 @@ public class register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        getSupportActionBar().hide();
         Complex = findViewById(R.id.complex);
         Person = findViewById(R.id.person);
         linearCom = findViewById(R.id.linearcom);

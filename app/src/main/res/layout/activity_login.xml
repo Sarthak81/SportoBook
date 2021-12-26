@@ -8,173 +8,195 @@
     android:background="@drawable/download"
     tools:context=".login">
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+
+    <TextView
+        android:id="@+id/logHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal"
+        android:fontFamily="@font/headland_one"
+        android:text="@string/login"
+        android:textColor="#ECE5E5"
+        android:textSize="@dimen/_40sdp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.206">
+        app:layout_constraintVertical_bias="0.117" />
 
-        <Button
-            android:id="@+id/complex"
-            android:layout_width="123dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="29dp"
-            android:fadingEdge="vertical"
-            android:fontFamily="@font/belgrano"
-            android:shadowColor="#BC9B9B"
-            android:text="@string/complex"
-            app:backgroundTint="#00626578" />
-
-        <Button
-            android:id="@+id/person"
-            android:layout_width="123dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="29dp"
-            android:fadingEdge="vertical"
-            android:fontFamily="@font/belgrano"
-            android:text="@string/person"
-            app:backgroundTint="@color/purple_700" />
-
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/loginMail"
-        android:layout_width="228dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:autofillHints=""
-        android:background="#11000000"
-        android:drawableStart="@drawable/ic_action_email"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textPersonName"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/loginPass"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.7" />
-
-
-    <EditText
-        android:id="@+id/loginPass"
-        android:layout_width="228dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:autofillHints=""
-        android:background="#11000000"
-        android:drawableStart="@drawable/ic_action_pass"
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="209dp"
-        android:layout_height="42dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="300dp"
-        app:cardBackgroundColor="@color/design_default_color_primary_dark"
-        app:cardCornerRadius="25dp"
-
-        app:cardElevation="10dp"
+    <ScrollView
+        android:id="@+id/scrollView4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_150sdp">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/logConstraint"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="@dimen/_350sdp"
+            android:background="@drawable/register_back"
+            android:backgroundTint="@color/white"
+            app:layout_constraintHeight_percent=".78">
 
-            <TextView
-                android:id="@+id/textView"
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="@dimen/_300sdp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/loginMail"
+                app:layout_constraintEnd_toEndOf="@id/logConstraint"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="@id/logConstraint"
+                app:layout_constraintTop_toTopOf="@id/logConstraint"
+                app:layout_constraintVertical_bias="0"
+                android:layout_marginBottom="@dimen/_30sdp">
+
+                <Button
+                    android:id="@+id/complex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:fadingEdge="vertical"
+                    android:fontFamily="@font/belgrano"
+                    android:text="@string/complex"
+                    android:textColor="#000000"
+                    android:background="@drawable/item_button_back"/>
+
+                <Button
+                    android:id="@+id/person"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:fadingEdge="vertical"
+                    android:fontFamily="@font/belgrano"
+                    android:text="@string/person"
+                    android:textColor="#000000"
+                    android:background="@drawable/item_button_back"/>
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/loginMail"
+                android:layout_width="228dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:autofillHints=""
+                android:background="#11000000"
+                android:drawableStart="@drawable/ic_action_email"
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="textPersonName"
+                android:textSize="16sp"
+                android:padding="@dimen/_5sdp"
+                app:layout_constraintBottom_toTopOf="@+id/loginPass"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                android:layout_marginVertical="@dimen/_15sdp"/>
+        
+        
+            <EditText
+                android:id="@+id/loginPass"
+                android:layout_width="228dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:autofillHints=""
+                android:background="#11000000"
+                android:drawableStart="@drawable/ic_action_pass"
+                android:ems="10"
+                android:hint="@string/password"
+                android:padding="@dimen/_5sdp"
+                android:inputType="textPassword"
+                app:layout_constraintBottom_toTopOf="@+id/cardView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginVertical="@dimen/_15sdp"/>
+        
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="209dp"
+                android:layout_height="42dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginBottom="300dp"
+                app:cardBackgroundColor="@color/design_default_color_primary_dark"
+                app:cardCornerRadius="25dp"
+        
+                app:cardElevation="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/login"
+                        android:textColor="#fff"
+                        android:textSize="20sp" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        
+            <Button
+                android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/login"
-                android:textColor="#fff"
-                android:textSize="20sp" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="263dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:background="#0022858E"
-        android:fontFamily="@font/headland_one"
-        android:text="@string/login"
-        android:textAlignment="center"
-        android:textColor="#101010"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.136" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:text="@string/forgot_password"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.166" />
-
-    <ProgressBar
-        android:id="@+id/progressBar2"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.937" />
-
-    <Button
-        android:id="@+id/googleSign"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Google "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.815" />
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:text="@string/forgot_password"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView"
+                app:layout_constraintVertical_bias="0.166" />
+        
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.937" />
+        
+            <Button
+                android:id="@+id/googleSign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Google "
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.815" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

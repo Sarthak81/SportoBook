@@ -1,11 +1,13 @@
 package com.example.book_a_court.ui.home;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -13,12 +15,16 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.book_a_court.R;
 import com.example.book_a_court.ui.chat.ChatUserAdapter;
 import com.example.book_a_court.ui.chat.Users;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 import android.content.Context;
@@ -31,6 +37,8 @@ import android.widget.Filterable;
 import android.widget.Toast;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 public class ComplexListAdapter extends RecyclerView.Adapter<ComplexListAdapter.ViewHolder> implements Filterable{
     Context contextHere;
@@ -62,12 +70,16 @@ public class ComplexListAdapter extends RecyclerView.Adapter<ComplexListAdapter.
     }
 
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         complexUsers user = complexList.get(position);
 //        Log.d("chatTag", "onBindViewHolder: "+user.getName());
         holder.ratingBar.setRating(user.getRating());
-        holder.complex_name.setText(user.getName());
+        holder.complex_name.setText(user.getName().toUpperCase());
+        if(user.uri!=null){
+            Picasso.get().load(user.getUri()).into(holder.card_pic);
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,11 +147,13 @@ public class ComplexListAdapter extends RecyclerView.Adapter<ComplexListAdapter.
         CardView tile;
         RatingBar ratingBar;
         TextView complex_name;
+        ImageView card_pic;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ratingBar = itemView.findViewById(R.id.ratingBar);
             tile = itemView.findViewById(R.id.complexTile);
             complex_name = itemView.findViewById(R.id.complex_name);
+            card_pic = itemView.findViewById(R.id.card_pic);
         }
     }
 }

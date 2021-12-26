@@ -1,6 +1,7 @@
 package com.example.book_a_court;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -61,6 +62,7 @@ public class login extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        getSupportActionBar().hide();
         FirebaseUser user =fAuth.getCurrentUser();
         if(user!=null){
             DocumentReference df = fStore.collection("users").document(fAuth.getUid());
@@ -85,10 +87,12 @@ public class login extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getSupportActionBar().hide();
         mEmail = findViewById(R.id.loginMail);
         mPassword = findViewById(R.id.loginPass);
         googleSign = findViewById(R.id.googleSign);
@@ -101,24 +105,27 @@ public class login extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         progressBar = findViewById(R.id.progressBar2);
 
+        complex.setBackground(getResources().getDrawable(R.drawable.item_button_back));
+        person.setBackgroundColor(android.R.color.transparent);
+
         person.setOnClickListener(new View.OnClickListener()
         {
-            @SuppressLint("ResourceAsColor")
+            @SuppressLint({"ResourceAsColor", "UseCompatLoadingForDrawables"})
             @Override
             public void onClick (View v){
                 activeUser = 1;
-                person.setBackgroundColor(android.R.color.transparent);
-                complex.setBackgroundColor(Color.parseColor("#3700B3"));
+                person.setBackground(getResources().getDrawable(R.drawable.item_button_back));
+                complex.setBackgroundColor(android.R.color.transparent);
             }
         });
         complex.setOnClickListener(new View.OnClickListener()
         {
-            @SuppressLint("ResourceAsColor")
+            @SuppressLint({"ResourceAsColor", "UseCompatLoadingForDrawables"})
             @Override
             public void onClick (View v){
                 activeUser = 0;
-                complex.setBackgroundColor(android.R.color.transparent);
-                person.setBackgroundColor(Color.parseColor("#3700B3"));
+                complex.setBackground(getResources().getDrawable(R.drawable.item_button_back));
+                person.setBackgroundColor(android.R.color.transparent);
             }
         });
 

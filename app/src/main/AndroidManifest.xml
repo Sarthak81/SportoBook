@@ -56,7 +56,8 @@
         <activity
             android:name=".login"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity"></activity>
+
+        <activity android:name=".MainActivity"/>
 
         <meta-data
             android:name="preloaded_fonts"

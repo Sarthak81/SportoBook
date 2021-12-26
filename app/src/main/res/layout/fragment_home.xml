@@ -27,7 +27,7 @@
         android:background="@drawable/register_back"
         android:drawableStart="@android:drawable/ic_menu_search"
         android:ems="10"
-        android:hint="Search courts"
+        android:hint="@string/search_courts"
         android:inputType="textPersonName"
         android:textColorHint="#0B0A0A"
         app:layout_constraintEnd_toEndOf="parent"
