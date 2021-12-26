@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -50,7 +51,8 @@ public class HomeComFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 BookingData bookingData = snapshot.getValue(BookingData.class);
-                list.add(bookingData);
+                if(bookingData!=null)
+                    list.add(bookingData);
                 historyAdapter.notifyDataSetChanged();
             }
 
