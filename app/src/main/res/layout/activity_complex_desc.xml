@@ -66,31 +66,6 @@
                 android:layout_gravity="bottom"/>
 
             <TextView
-                android:id="@+id/textView13"
-                android:layout_width="115dp"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_8sdp"
-                android:text="@string/about_us"
-                android:textColor="#221F1F"
-                android:textSize="@dimen/_15sdp" />
-
-            <TextView
-                android:id="@+id/aboutUs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/_8sdp"
-                android:text="Tekken is a Japanese media franchise centered on a series of fighting video and arcade games developed by Bandai Namco Studios and published by Bandai Namco Entertainment. The franchise also includes film and print adaptations. "
-                android:textColor="#2C2929"
-                android:textSize="@dimen/_12sdp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#c0c0c0"
-                android:padding="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_5sdp"/>
-
-            <TextView
                 android:id="@+id/see_videos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
